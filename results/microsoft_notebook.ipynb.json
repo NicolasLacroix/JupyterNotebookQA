@@ -1,0 +1,10 @@
+{
+    "title": "notebook.ipynb",
+    "notebook": "notebooks/github/notebook.ipynb",
+    "metadata": "notebooks/github/notebook.toml",
+    "metrics": {
+        "nb_code_cells": 4,
+        "nb_markdown_cells": 4,
+        "dependencies_installation_detected": false
+    }
+}
