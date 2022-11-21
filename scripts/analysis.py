@@ -1,6 +1,10 @@
 import json
 import tomllib
 from typing import Any
+from pathlib import Path
+from uuid import uuid1
+
+from pylint.lint import Run
 
 NOTEBOOK = "notebooks/github/notebook"
 
@@ -21,6 +25,8 @@ with open(f"{NOTEBOOK}.toml", "rb") as f:
 
 print(f"========= Analysing {notebook_metadata['title']} =========\n")
 
+print("Analysing notebook structure...")
+
 code_cells = get_code_cells(notebook)
 markdown_cells = get_markdown_cells(notebook)
 
@@ -28,6 +34,19 @@ print(f"Number of code cells: {len(code_cells)}")
 print(f"Number of markdown cells: {len(markdown_cells)}")
 # TODO: check !pip use for dependencies installation
 print(f"Dependencies installation cell detected ? {'!pip ' in code_cells[0]['source']}")
+
+print("Analysing code quality (pylint)")
+
+Path("tmp/").mkdir(parents=True, exist_ok=True)
+pylint_scores = []
+for code_cell in code_cells:
+    tmp_filename = f"tmp/code_cell_{uuid1()}.py.tmp"
+    tmp_path = Path(tmp_filename)
+    with open(tmp_filename, 'w') as f:
+        f.writelines(code_cell['source'])
+        run = Run([tmp_filename], do_exit=False)
+        pylint_scores.append(run.linter.stats.global_note)
+    tmp_path.unlink()
 
 print("\nExporting results...", end='')
 
@@ -39,10 +58,15 @@ results = {
         'nb_code_cells': len(code_cells),
         'nb_markdown_cells': len(markdown_cells),
         'dependencies_installation_detected': '!pip ' in code_cells[0]['source'],
+        'code_quality': {
+            'pylint_scores': pylint_scores,
+        }
     }
 }
 
 with open(f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json", "w") as f:
     json.dump(results, f,  indent=4)
 
-print("done")
+print(json.dumps(results, indent=4))
+
+print("\ndone")
