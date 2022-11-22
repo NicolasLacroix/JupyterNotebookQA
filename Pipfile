@@ -8,6 +8,7 @@ pylint = "*"
 kaggle = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
 python_version = "3.11"
