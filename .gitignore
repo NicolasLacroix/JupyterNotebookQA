@@ -131,3 +131,6 @@ dmypy.json
 # Tmp files/directories
 *.tmp
 tmp/
+
+# PyCharm
+.idea/
