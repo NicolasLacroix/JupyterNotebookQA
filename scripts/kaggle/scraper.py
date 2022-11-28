@@ -1,5 +1,5 @@
 import os
-
+import time
 import tomli_w
 from kaggle.api.kaggle_api_extended import KaggleApi
 
@@ -29,6 +29,7 @@ def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
         fileName = element.strip().split('/', 1)[1]
         print(f"Saving {element.strip()}...", end="")
         api.kernels_pull(element.strip(), path=path)
+        time.sleep(1)
         print("done")
         with open(f"{path + fileName}.toml", "wb") as f:
             print(f"Saving {path + fileName}.toml...", end="")
