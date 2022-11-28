@@ -31,7 +31,7 @@ def scrap_github(config_filepath: str = typer.Argument('scripts/kaggle/notebooks
 @app.command()
 def scrap_kaggle(config_filepath: str = typer.Argument('scripts/kaggle/notebooks.txt')):
     print(f"Scrapping kaggle using config: {config_filepath}")
-    kaggle_scraper.top_notebook()
+    kaggle_scraper.list_top_notebook(config_filepath)
     kaggle_scraper.scrap(config_filepath)
     
 
