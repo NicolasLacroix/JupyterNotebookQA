@@ -1,10 +1,19 @@
 import os
+from kaggle.api.kaggle_api_extended import KaggleApi
+import tomli_w
+import requests
+
+import pprint
 
 os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
 
-from kaggle.api.kaggle_api_extended import KaggleApi
-import tomli_w
-
+def top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
+    api = KaggleApi()
+    api.authenticate()
+    notebooks = api.kernels_list(sort_by="voteCount", page_size=4)
+    with open(config_file, 'w') as f:
+        for i in notebooks:
+            f.write(str(getattr(i, "ref"))+"\n")
 
 def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
@@ -28,5 +37,6 @@ def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
 
 
 if __name__ == '__main__':
+    top_notebook()
     print(os.environ.get('KAGGLE_CONFIG_DIR'))
     scrap()
