@@ -134,3 +134,7 @@ tmp/
 
 # PyCharm
 .idea/
+
+# Notebooks repositories
+notebooks/github/
+notebooks/kaggle/
