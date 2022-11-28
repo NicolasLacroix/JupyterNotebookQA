@@ -1,4 +1,4 @@
-pmarcelino/comprehensive-data-exploration-with-python
-startupsci/titanic-data-science-solutions
-alexisbcook/titanic-tutorial
-serigne/stacked-regressions-top-4-on-leaderboard
+pmarcelino/comprehensive-data-exploration-with-python 2022-04-30 19:20:37
+startupsci/titanic-data-science-solutions 2019-02-11 01:21:23
+alexisbcook/titanic-tutorial 2022-06-24 00:25:16
+serigne/stacked-regressions-top-4-on-leaderboard 2017-12-16 11:57:12
