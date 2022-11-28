@@ -1,3 +1,4 @@
+# import ast
 import io
 import json
 import sys
@@ -16,6 +17,10 @@ def filter_cells_by(
     data: dict[str, Any], filter_key: str, filter_value: str
 ) -> tuple[dict[str, Any]]:
     return tuple(n for n in data["cells"] if n[filter_key] == filter_value)
+
+
+def get_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
+    return tuple(n for n in data["cells"])
 
 
 def get_code_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
@@ -63,6 +68,17 @@ def run_code_analysis(code_cells):
     return pylint_score, mypy_score
 
 
+def compute_profile(data):
+    cells = get_cells(data)
+    return [
+        {
+            'cell_type': cell['cell_type'],
+            'nb_lines': sum(len(p.strip().split('\n')) for p in cell['source']),
+            # 'imports': 0 if cell['cell_type'] != 'code' else len(n for n in ast.iter_child_nodes(ast.parse('\n'.join('\n'.join(s for s in cell['source'] if not s.startswith('%'))))) if isinstance(n, ast.Import, ast.ImportFrom))
+        } for cell in cells
+    ]
+
+
 def run_analysis(
     notebook_name: str = "notebooks/github/notebook", 
     verbose: bool = True, 
@@ -87,7 +103,7 @@ def run_analysis(
     display("Analysing notebook structure...")
     code_cells = get_code_cells(notebook)
     markdown_cells = get_markdown_cells(notebook)
-    profile = "-".join([cell['cell_type'] for cell in notebook['cells']])
+    profile = compute_profile(notebook)
 
     display("Analysing code quality (pylint, mypy)")
     pylint_score, mypy_score = run_code_analysis(code_cells)

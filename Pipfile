@@ -8,6 +8,7 @@ kaggle = "*"
 typer = {extras = ["all"], version = "*"}
 beautifulsoup4 = "*"
 tomli-w = "*"
+matplotlib = "*"
 
 [dev-packages]
 pylint = "*"

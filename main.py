@@ -3,7 +3,7 @@ from typing import Optional
 
 import typer
 
-from scripts import analysis
+from scripts import analysis, analysis_plot
 from scripts.kaggle import scraper as kaggle_scraper
 
 app = typer.Typer()
@@ -19,13 +19,19 @@ def analyze(directory: Optional[str] = typer.Argument('notebooks/')):
 
 
 @app.command()
-def scrap_github(config_filepath: str):
+def display_profile():
+    analysis_plot.plot_profile()
+
+
+@app.command()
+def scrap_github(config_filepath: str = typer.Argument('scripts/kaggle/notebooks.txt')):
     print(f"Scrapping github using config: {config_filepath}")
 
 
 @app.command()
-def scrap_kaggle(config_filepath: str):
+def scrap_kaggle(config_filepath: str = typer.Argument('scripts/kaggle/notebooks.txt')):
     print(f"Scrapping kaggle using config: {config_filepath}")
+    kaggle_scraper.list_top_notebook(config_filepath)
     kaggle_scraper.scrap(config_filepath)
     
 
