@@ -1,43 +1,65 @@
 import io
 import os
 import shutil
+import time
 import zipfile
+from datetime import datetime
 
 import requests
+import tomli_w
 from requests import Response
 
-tmp_directory_suffix = "-tmp"
+# Constants
+TMP_DIRECTORY_SUFFIX = "-tmp"
+OWNER = "owner"
+NAME = "name"
 
-repositories = [
-    {"owner": "Pierian-Data", "repo": "Complete-Python-3-Bootcamp"}
-    # {"owner": "trekhleb"},
-    # {"owner": "norvig"},
-    # {"owner": "MLEveryday"},
-    # {"owner": "dennybritz"},
-    # {"owner": "wesm"},
-    # {"owner": "slundberg"},
-    # {"owner": "zergtant"},
-    # "https://github.com/trekhleb/homemade-machine-learning",
-    # "https://github.com/norvig/pytudes",
-    # "https://github.com/MLEveryday/100-Days-Of-ML-Code",
-    # "https://github.com/dennybritz/reinforcement-learning",
-    # "https://github.com/wesm/pydata-book",
-    # "https://github.com/slundberg/shap",
-    # "https://github.com/zergtant/pytorch-handbook",
-    # "https://github.com/spmallick/learnopencv",
-    # "https://github.com/fastai/fastbook"
-]
+# https://github.com/search?l=&o=desc&q=stars%3A%22%3E+1000%22+language%3A%22Jupyter+Notebook%22&s=stars&type=Repositories
+links = {
+    # "https://github.com/microsoft/ML-For-Beginners",
+    "https://github.com/aymericdamien/TensorFlow-Examples",
+    # "https://github.com/jakevdp/PythonDataScienceHandbook",
+    # "https://github.com/CompVis/stable-diffusion",
+    # "https://github.com/GokuMohandas/Made-With-ML",
+    # "https://github.com/google-research/google-research",
+    # "https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers",
+    # "https://github.com/ageron/handson-ml",
+    # "https://github.com/ageron/handson-ml2",
+    # "https://github.com/fastai/fastai"
+}
+
+repositories = []
+
+
+def create_toml(directory: str, repository: dict[str, str]) -> None:
+    for root, dirs, files in os.walk(directory):
+        for current_file in files:
+            if current_file.lower().endswith('.ipynb') and not os.path.isfile(f"{directory}/{current_file}.toml"):
+                # if current_file.lower().endswith('.ipynb'):
+                with open(f"{directory}/{current_file[:-6]}.toml", "wb") as file:
+                    file_creation = os.path.getmtime(f"{directory}/{current_file}")
+                    tomli_w.dump({'title': os.path.basename(file.name),
+                                  'metadata':
+                                      {
+                                          'path': f"{os.path.relpath(file.name)}",
+                                          'source': f"https://github.com/{repository[OWNER]}/{repository[NAME]}",
+                                          'author': repository[OWNER],
+                                          'date': datetime.fromtimestamp(file_creation).strftime("%d/%m/%Y")
+                                      }
+                                  }, file)
 
 
 def move_ipynb(directory: str) -> None:
     os.makedirs(directory, exist_ok=True)
-    for root, dirs, files in os.walk(directory + tmp_directory_suffix):
+    for root, dirs, files in os.walk(directory + TMP_DIRECTORY_SUFFIX):
         for current_file in files:
             if current_file.lower().endswith('.ipynb'):
                 location_from = f"{root}/{current_file}"
                 location_to = f"{directory}/{current_file}"
-                # print(f"File {location_from} moved to {location_to}")
-                os.rename(location_from, location_to)
+                if not os.path.isfile(location_to):
+                    stat = os.stat(location_from)
+                    os.rename(location_from, location_to)
+                    os.utime(location_to, (stat.st_atime, stat.st_mtime))
 
 
 def delete_directory(directory: str) -> None:
@@ -50,41 +72,74 @@ def clean_repository(directory: str) -> None:
     move_ipynb(directory)
 
     # Delete the temporary directory.
-    delete_directory(directory + tmp_directory_suffix)
+    delete_directory(directory + TMP_DIRECTORY_SUFFIX)
 
 
-def download_zip(repo: dict[str, str]) -> Response:
-    response = requests.get(f"https://api.github.com/repos/{repo['owner']}/{repo['repo']}")
+def download_zip(repository: dict[str, str]) -> Response:
+    headers = {"Accept": "application/vnd.github+json"}
+    if os.environ.get('GITHUB_TOKEN') is not None:
+        headers['Authorization'] = f"Bearer {os.environ.get('GITHUB_TOKEN')}"
+    response = requests.get(f"https://api.github.com/repos/{repository[OWNER]}/{repository[NAME]}", headers)
     if response.status_code != 200:
         raise Exception("Error while getting the most popular repositories on GitHub.")
 
     json_response = response.json()
     # print(f"json_response = {json_response}")
     default_branch = json_response['default_branch']
-    download_url = f"https://github.com/{repo['owner']}/{repo['repo']}/archive/refs/heads/{default_branch}.zip"
+    download_url = f"https://github.com/{repository[OWNER]}/{repository[NAME]}/archive/refs/heads/{default_branch}.zip"
     print(f"Downloading {download_url}")
     return requests.get(download_url)
 
 
+def parse_links() -> None:
+    for link in links:
+        link = link.split('/')
+        owner = link[3]
+        name = ''.join(link[4:])
+        repositories.append({OWNER: owner, NAME: name})
+
+
+def get_directory_str(repository: dict[str, str]) -> str:
+    if len(repository) == 2:
+        return f"{repository[OWNER]}-{repository[NAME]}"
+    return "unknown-repository"
+
+
+def extract_zip(repository: dict[str, str]) -> None:
+    directory = get_directory_str(repository)
+    zip_response = download_zip(repository)
+    print("Extracting archive...")
+
+    zip_file = zipfile.ZipFile(io.BytesIO(zip_response.content))
+    for zi in zip_file.infolist():
+        zip_file.extract(zi, path=f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}")
+        date_time = time.mktime(zi.date_time + (0, 0, -1))
+        os.utime(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
+    zip_file.close()
+
+    print(f"{directory} directory extracted.")
+
+
 def get_repositories() -> None:
     """
-    Retrieve the URL of the top 10 most stars repositories on GitHub.
+    Retrieve the notebooks of the top 10 most stars repositories on GitHub.
     """
-    for repo in repositories:
-        if os.path.exists(f"../notebooks/github/{repo['owner']}"):
-            print(f"{repo['owner']} already created, this GitHub repository is skipped.")
-            continue
-        if os.path.exists(f"../notebooks/github/{repo['owner']}{tmp_directory_suffix}"):
-            print(f"{repo['owner']}{tmp_directory_suffix} already created, skip the download part and retrieves the "
-                  f"current notebooks.")
-        else:
-            zip_response = download_zip(repo)
-            print("Extracting archive...")
-            zip_file = zipfile.ZipFile(io.BytesIO(zip_response.content))
-            zip_file.extractall(f"../notebooks/github/{repo['owner']}{tmp_directory_suffix}")
-            print(f"{repo['owner']} directory extracted.")
+    parse_links()
 
-        clean_repository(f"../notebooks/github/{repo['owner']}")
+    for repository in repositories:
+        directory = get_directory_str(repository)
+
+        if os.path.exists(f"../notebooks/github/{directory}"):
+            print(f"{repository[OWNER]} already created, this GitHub repository is skipped.")
+            continue
+        if os.path.exists(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}"):
+            print(f"{directory}{TMP_DIRECTORY_SUFFIX} already created, skip the download "
+                  f"part and retrieves the current notebooks.")
+        else:
+            extract_zip(repository)
+
+        clean_repository(f"../notebooks/github/{directory}")
+        create_toml(f"../notebooks/github/{directory}", repository)
 
 
 get_repositories()
