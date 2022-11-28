@@ -1,11 +1,13 @@
 import os
+
+os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
+
 from kaggle.api.kaggle_api_extended import KaggleApi
 import tomli_w
 import requests
 
 import pprint
 
-os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
 
 def top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
