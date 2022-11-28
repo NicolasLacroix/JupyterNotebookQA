@@ -1,19 +1,19 @@
 import os
-from kaggle.api.kaggle_api_extended import KaggleApi
-import tomli_w
-import requests
 
-import pprint
+import tomli_w
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
 
-def top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
+
+def list_top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
     api.authenticate()
     notebooks = api.kernels_list(sort_by="voteCount", page_size=4)
     with open(config_file, 'w') as f:
-        for i in notebooks:
-            f.write(str(getattr(i, "ref"))+"\n")
+        for notebook in notebooks:
+            f.write(str(getattr(notebook, "ref")) + " " + str(getattr(notebook, "lastRunTime")) + "\n")
+
 
 def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
@@ -23,20 +23,22 @@ def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
     lines = file1.readlines()
     baseUrl = "https://www.kaggle.com/code/"
     for line in lines:
-        path = "notebooks/kaggle/"+line.strip().replace('/','-')+"/"
-        author = line.strip().split('/', 1)[0]
-        fileName = line.strip().split('/',1)[1]
-        print(f"Saving {line.strip()}...", end="")
-        api.kernels_pull(line.strip(), path=path)
+        element = line.split()[0]
+        path = "notebooks/kaggle/" + element.strip().replace('/', '-') + "/"
+        author = element.strip().split('/', 1)[0]
+        fileName = element.strip().split('/', 1)[1]
+        print(f"Saving {element.strip()}...", end="")
+        api.kernels_pull(element.strip(), path=path)
         print("done")
-        with open(f"{path+fileName}.toml", "wb") as f:
-            # DATE NOT FOUND : https://github.com/Kaggle/kaggle-api#kernels
-            print(f"Saving {path+fileName}.toml...", end="")
-            tomli_w.dump({'title': fileName,'metadata': {'path': fileName+'.ipynb', 'source': baseUrl+line.strip(), 'author': author, 'date': 'TODO'}}, f)
+        with open(f"{path + fileName}.toml", "wb") as f:
+            print(f"Saving {path + fileName}.toml...", end="")
+            tomli_w.dump({'title': fileName,
+                          'metadata': {'path': fileName + '.ipynb', 'source': baseUrl + element.strip(), 'author': author,
+                                       'date': line.split()[1]}}, f)
             print("done")
 
 
 if __name__ == '__main__':
-    top_notebook()
+    list_top_notebook()
     print(os.environ.get('KAGGLE_CONFIG_DIR'))
     scrap()
