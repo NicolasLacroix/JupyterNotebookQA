@@ -4,8 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+kaggle = "*"
+typer = {extras = ["all"], version = "*"}
+beautifulsoup4 = "*"
+tomli-w = "*"
 
 [dev-packages]
+pylint = "*"
+black = "*"
+flake8 = "*"
+bandit = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.11"

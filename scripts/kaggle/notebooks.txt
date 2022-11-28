@@ -1,2 +1,4 @@
-cdeotte/compute-validation-score-cv-565
-cdeotte/test-data-leak-lb-boost
+pmarcelino/comprehensive-data-exploration-with-python
+startupsci/titanic-data-science-solutions
+alexisbcook/titanic-tutorial
+serigne/stacked-regressions-top-4-on-leaderboard
