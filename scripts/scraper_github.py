@@ -146,4 +146,5 @@ def get_repositories() -> None:
         create_toml(f"../notebooks/github/{directory}", repository)
 
 
-get_repositories()
+if __name__ == '__main__':
+    get_repositories()
