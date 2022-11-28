@@ -16,16 +16,16 @@ NAME = "name"
 
 # https://github.com/search?l=&o=desc&q=stars%3A%22%3E+1000%22+language%3A%22Jupyter+Notebook%22&s=stars&type=Repositories
 links = {
-    # "https://github.com/microsoft/ML-For-Beginners",
+    "https://github.com/microsoft/ML-For-Beginners",
     "https://github.com/aymericdamien/TensorFlow-Examples",
-    # "https://github.com/jakevdp/PythonDataScienceHandbook",
-    # "https://github.com/CompVis/stable-diffusion",
-    # "https://github.com/GokuMohandas/Made-With-ML",
-    # "https://github.com/google-research/google-research",
-    # "https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers",
-    # "https://github.com/ageron/handson-ml",
-    # "https://github.com/ageron/handson-ml2",
-    # "https://github.com/fastai/fastai"
+    "https://github.com/jakevdp/PythonDataScienceHandbook",
+    "https://github.com/CompVis/stable-diffusion",
+    "https://github.com/GokuMohandas/Made-With-ML",
+    "https://github.com/google-research/google-research",
+    "https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers",
+    "https://github.com/ageron/handson-ml",
+    "https://github.com/ageron/handson-ml2",
+    "https://github.com/fastai/fastai"
 }
 
 repositories = []
@@ -114,7 +114,11 @@ def extract_zip(repository: dict[str, str]) -> None:
     for zi in zip_file.infolist():
         zip_file.extract(zi, path=f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}")
         date_time = time.mktime(zi.date_time + (0, 0, -1))
-        os.utime(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
+        try:
+            os.utime(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
+        except Exception as e:
+            # Handle weird filename.
+            print(e)
     zip_file.close()
 
     print(f"{directory} directory extracted.")
