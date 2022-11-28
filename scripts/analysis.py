@@ -1,12 +1,15 @@
+import io
 import json
+import sys
+import contextlib
 from pathlib import Path
 from typing import Any
 from uuid import uuid1
 
 import tomllib
 from pylint.lint import Run
-
-NOTEBOOK = "notebooks/github/notebook"
+from mypy import api
+import flake8
 
 
 def filter_cells_by(
@@ -23,60 +26,102 @@ def get_markdown_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
     return filter_cells_by(data, "cell_type", "markdown")
 
 
-with open(f"{NOTEBOOK}.ipynb", encoding="utf-8") as f:
-    notebook = json.load(f)
+def execute_for_each_code_cell(code_cells, func) -> Any:
+    Path("tmp/").mkdir(parents=True, exist_ok=True)
+    results = []
+    for code_cell in code_cells:
+        tmp_filename = f"tmp/code_cell_{uuid1()}.py.tmp"
+        tmp_path = Path(tmp_filename)
+        with open(tmp_filename, mode="w", encoding='utf-8') as f:
+            f.writelines(code_cell["source"])
+            results.append(func(tmp_filename))
+        tmp_path.unlink()
+    return results
 
-with open(f"{NOTEBOOK}.toml", mode="rb", encoding="utf-8") as f:
-    notebook_metadata = tomllib.load(f)
 
-print(f"========= Analysing {notebook_metadata['title']} =========\n")
-
-print("Analysing notebook structure...")
-
-code_cells = get_code_cells(notebook)
-markdown_cells = get_markdown_cells(notebook)
-
-print(f"Number of code cells: {len(code_cells)}")
-print(f"Number of markdown cells: {len(markdown_cells)}")
-# TODO: check !pip use for dependencies installation
-print(f"Dependencies installation cell detected ? {'!pip ' in code_cells[0]['source']}")
-
-print("Analysing code quality (pylint)")
-
-Path("tmp/").mkdir(parents=True, exist_ok=True)
-pylint_scores = []
-for code_cell in code_cells:
-    tmp_filename = f"tmp/code_cell_{uuid1()}.py.tmp"
+def run_code_analysis(code_cells):
+    Path("tmp/").mkdir(parents=True, exist_ok=True)
+    tmp_filename = f"tmp/code_{uuid1()}.tmp.py"
     tmp_path = Path(tmp_filename)
-    with open(tmp_filename, mode="w", encoding='utf-8') as f:
-        f.writelines(code_cell["source"])
-        run = Run([tmp_filename], do_exit=False)
-        pylint_scores.append(run.linter.stats.global_note)
+
+    pylint_score = None
+    mypy_score = None
+    total_nb_lines = 0
+    for code_cell in code_cells:
+        with open(tmp_filename, mode="a", encoding='utf-8') as f:
+            lines = [s for s in code_cell["source"] if not s.startswith('%')] + ['\n']
+            total_nb_lines += len(lines) - 1
+            f.writelines(lines)
+    with contextlib.redirect_stdout(io.StringIO()):
+        pylint_run = Run([tmp_filename], exit=False)
+        pylint_score = pylint_run.linter.stats.global_note
+        mypy_run = api.run([tmp_filename])
+        mypy_nb_errors = mypy_run[0].strip().split('\n')[-1].split()[1]
+    mypy_score = 1 - int(mypy_nb_errors) / total_nb_lines if mypy_nb_errors != 'no' else 100
     tmp_path.unlink()
 
-print("\nExporting results...", end="")
+    return pylint_score, mypy_score
 
-results = {
-    "title": notebook_metadata["title"],
-    "notebook": f"{NOTEBOOK}.ipynb",
-    "metadata": f"{NOTEBOOK}.toml",
-    "metrics": {
-        "nb_code_cells": len(code_cells),
-        "nb_markdown_cells": len(markdown_cells),
-        "dependencies_installation_detected": "!pip " in code_cells[0]["source"],
-        "code_quality": {
-            "pylint_scores": pylint_scores,
+
+def run_analysis(
+    notebook_name: str = "notebooks/github/notebook", 
+    verbose: bool = True, 
+    log_errors: bool = True,
+) -> bool:
+    display = print if verbose else lambda *args, **kwargs: None
+    display_error = print if log_errors else lambda *args, **kwargs: None
+    if not Path(f"{notebook_name}.ipynb").exists():
+        display_error(f"File {notebook_name}.ipynb does not exist. Skipping.")
+        return False
+    with open(f"{notebook_name}.ipynb", encoding="utf-8") as f:
+        notebook = json.load(f)
+
+    if not Path(f"{notebook_name}.toml").exists():
+        display_error(f"File {notebook_name}.toml does not exist. Skipping.")
+        return False
+    with open(f"{notebook_name}.toml", mode="rb") as f:
+        notebook_metadata = tomllib.load(f)
+
+    display(f"========= Analysing {notebook_metadata['title']} =========\n")
+
+    display("Analysing notebook structure...")
+    code_cells = get_code_cells(notebook)
+    markdown_cells = get_markdown_cells(notebook)
+    profile = "-".join([cell['cell_type'] for cell in notebook['cells']])
+
+    display("Analysing code quality (pylint, mypy)")
+    pylint_score, mypy_score = run_code_analysis(code_cells)
+
+    display("\nExporting results...", end="")
+
+    results = {
+        "title": notebook_metadata["title"],
+        "notebook": f"{notebook_name}.ipynb",
+        "metadata": f"{notebook_name}.toml",
+        "metrics": {
+            "nb_code_cells": len(code_cells),
+            "nb_markdown_cells": len(markdown_cells),
+            # TODO: check !pip use for dependencies installation
+            "dependencies_installation_detected": "!pip " in code_cells[0]["source"],
+            "code_quality": {
+                "pylint_score": pylint_score,
+                "mypy_score": mypy_score,
+            },
         },
-    },
-}
+        "profile": profile,
+    }
 
-with open(
-    f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
-    mode="w",
-    encoding="utf-8",
-) as f:
-    json.dump(results, f, indent=4)
+    with open(
+        f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
+        mode="w",
+        encoding="utf-8",
+    ) as f:
+        json.dump(results, f, indent=4)
 
-print(json.dumps(results, indent=4))
+    display(json.dumps(results, indent=4))
 
-print("\ndone")
+    display("\ndone")
+    return True
+
+if __name__ == '__main__':
+    run_analysis()

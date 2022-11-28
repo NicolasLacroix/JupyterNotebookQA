@@ -7,12 +7,9 @@
         "nb_markdown_cells": 4,
         "dependencies_installation_detected": false,
         "code_quality": {
-            "pylint_scores": [
-                0,
-                0,
-                0,
-                0
-            ]
+            "pylint_score": 0.7142857142857135,
+            "mypy_score": 0.7142857142857143
         }
-    }
+    },
+    "profile": "markdown-code-markdown-code-markdown-code-markdown-code"
 }
