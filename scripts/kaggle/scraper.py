@@ -9,7 +9,7 @@ os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
 def list_top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
     api.authenticate()
-    notebooks = api.kernels_list(sort_by="voteCount", page_size=4)
+    notebooks = api.kernels_list(sort_by="voteCount", page_size=100)
     with open(config_file, 'w') as f:
         for notebook in notebooks:
             f.write(str(getattr(notebook, "ref")) + " " + str(getattr(notebook, "lastRunTime")) + "\n")
