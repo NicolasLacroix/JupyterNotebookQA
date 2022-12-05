@@ -138,3 +138,6 @@ tmp/
 # Notebooks repositories
 notebooks/github/
 notebooks/kaggle/
+
+# Results of analysis
+results/

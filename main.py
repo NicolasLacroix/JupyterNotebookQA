@@ -34,7 +34,6 @@ def scrap_kaggle(config_filepath: str = typer.Argument('scripts/kaggle/notebooks
     print(f"Scrapping kaggle using config: {config_filepath}")
     kaggle_scraper.list_top_notebook(config_filepath)
     kaggle_scraper.scrap(config_filepath)
-    
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ import json
 
 import matplotlib.pyplot as plt
 
+
 def plot_profile():
     results = list(glob.glob('results/**/*.json', recursive=True))
     for result in results:

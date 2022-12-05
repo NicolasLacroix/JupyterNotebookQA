@@ -1,4 +1,5 @@
 import io
+import mmap
 import os
 import shutil
 import time
@@ -35,7 +36,6 @@ def create_toml(directory: str, repository: dict[str, str]) -> None:
     for root, dirs, files in os.walk(directory):
         for current_file in files:
             if current_file.lower().endswith('.ipynb') and not os.path.isfile(f"{directory}/{current_file}.toml"):
-                # if current_file.lower().endswith('.ipynb'):
                 with open(f"{directory}/{current_file[:-6]}.toml", "wb") as file:
                     file_creation = os.path.getmtime(f"{directory}/{current_file}")
                     tomli_w.dump({'title': os.path.basename(file.name),
@@ -49,6 +49,15 @@ def create_toml(directory: str, repository: dict[str, str]) -> None:
                                   }, file)
 
 
+def file_contains_code(location_from) -> bool:
+    with open(location_from, 'rb', 0) as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as s:
+        if s.find(b'"cell_type": "code"') != -1:
+            # Code found, the Jupyter Notebook contains code.
+            return True
+        # Code not found, the Jupyter Notebook does not contain code.
+        return False
+
+
 def move_ipynb(directory: str) -> None:
     os.makedirs(directory, exist_ok=True)
     for root, dirs, files in os.walk(directory + TMP_DIRECTORY_SUFFIX):
@@ -56,7 +65,7 @@ def move_ipynb(directory: str) -> None:
             if current_file.lower().endswith('.ipynb'):
                 location_from = f"{root}/{current_file}"
                 location_to = f"{directory}/{current_file}"
-                if not os.path.isfile(location_to):
+                if not os.path.isfile(location_to) and file_contains_code(location_from):
                     stat = os.stat(location_from)
                     os.rename(location_from, location_to)
                     os.utime(location_to, (stat.st_atime, stat.st_mtime))

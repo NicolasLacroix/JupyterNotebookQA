@@ -1,21 +1,19 @@
 # import ast
+import contextlib
 import io
 import json
 import sys
-import contextlib
+import tomllib
 from pathlib import Path
 from typing import Any
 from uuid import uuid1
 
-import tomllib
-from pylint.lint import Run
-from mypy import api
 import flake8
+from mypy import api
+from pylint.lint import Run
 
 
-def filter_cells_by(
-    data: dict[str, Any], filter_key: str, filter_value: str
-) -> tuple[dict[str, Any]]:
+def filter_cells_by(data: dict[str, Any], filter_key: str, filter_value: str) -> tuple[dict[str, Any]]:
     return tuple(n for n in data["cells"] if n[filter_key] == filter_value)
 
 
@@ -80,9 +78,9 @@ def compute_profile(data):
 
 
 def run_analysis(
-    notebook_name: str = "notebooks/github/notebook", 
-    verbose: bool = True, 
-    log_errors: bool = True,
+        notebook_name: str = "notebooks/github/notebook",
+        verbose: bool = True,
+        log_errors: bool = True
 ) -> bool:
     display = print if verbose else lambda *args, **kwargs: None
     display_error = print if log_errors else lambda *args, **kwargs: None
@@ -128,9 +126,9 @@ def run_analysis(
     }
 
     with open(
-        f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
-        mode="w",
-        encoding="utf-8",
+            f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
+            mode="w",
+            encoding="utf-8",
     ) as f:
         json.dump(results, f, indent=4)
 
@@ -138,6 +136,7 @@ def run_analysis(
 
     display("\ndone")
     return True
+
 
 if __name__ == '__main__':
     run_analysis()
