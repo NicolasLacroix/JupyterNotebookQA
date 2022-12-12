@@ -1,0 +1,57 @@
+{
+    "title": "winning-solutions-of-kaggle-competitions",
+    "notebook": "notebooks/kaggle/sudalairajkumar-winning-solutions-of-kaggle-competitions/winning-solutions-of-kaggle-competitions.ipynb",
+    "metadata": "notebooks/kaggle/sudalairajkumar-winning-solutions-of-kaggle-competitions/winning-solutions-of-kaggle-competitions.toml",
+    "metrics": {
+        "nb_code_cells": 1,
+        "nb_markdown_cells": 1,
+        "dependencies_installation_detected": false,
+        "code_quality": {
+            "pylint_score": {
+                "score": 3.275862068965517,
+                "count_by_severity": {
+                    "convention": 25,
+                    "error": 2,
+                    "fatal": 0,
+                    "info": 0,
+                    "refactor": 1,
+                    "statement": 58,
+                    "warning": 3
+                },
+                "count_by_messages": {
+                    "line-too-long": 5,
+                    "trailing-whitespace": 6,
+                    "missing-module-docstring": 1,
+                    "import-error": 1,
+                    "invalid-name": 8,
+                    "missing-function-docstring": 4,
+                    "redefined-outer-name": 1,
+                    "unused-variable": 1,
+                    "too-many-arguments": 1,
+                    "undefined-variable": 1,
+                    "wrong-import-order": 1,
+                    "unused-import": 1
+                }
+            },
+            "mypy_score": {
+                "score": 0.9997296566639632,
+                "count_by_severity": {
+                    "error": 1
+                },
+                "count_by_messages": {
+                    "import": 1
+                }
+            }
+        }
+    },
+    "profile": [
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1343
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 3705
+        }
+    ]
+}

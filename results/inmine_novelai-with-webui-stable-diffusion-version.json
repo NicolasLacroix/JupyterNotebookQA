@@ -1,0 +1,106 @@
+{
+    "title": "novelai-with-webui-stable-diffusion-version",
+    "notebook": "notebooks/kaggle/inmine-novelai-with-webui-stable-diffusion-version/novelai-with-webui-stable-diffusion-version.ipynb",
+    "metadata": "notebooks/kaggle/inmine-novelai-with-webui-stable-diffusion-version/novelai-with-webui-stable-diffusion-version.toml",
+    "metrics": {
+        "nb_code_cells": 14,
+        "nb_markdown_cells": 3,
+        "dependencies_installation_detected": false,
+        "code_quality": {
+            "pylint_score": {
+                "score": 0,
+                "count_by_severity": {
+                    "convention": 0,
+                    "error": 1,
+                    "fatal": 0,
+                    "info": 0,
+                    "refactor": 0,
+                    "statement": 0,
+                    "warning": 0
+                },
+                "count_by_messages": {
+                    "syntax-error": 1
+                }
+            },
+            "mypy_score": {
+                "score": 0.9999070545589739,
+                "count_by_severity": {
+                    "error": 1
+                },
+                "count_by_messages": {
+                    "syntax": 1
+                }
+            }
+        }
+    },
+    "profile": [
+        {
+            "cell_type": "markdown",
+            "nb_lines": 103
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 384
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 2454
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1256
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 386
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 492
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 299
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1973
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 375
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 233
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 242
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 49
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 998
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 998
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 148
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 261
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 500
+        }
+    ]
+}

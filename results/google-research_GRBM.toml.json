@@ -1,0 +1,95 @@
+{
+    "title": "GRBM.toml",
+    "notebook": "notebooks/github/google-research-google-research/GRBM.ipynb",
+    "metadata": "notebooks/github/google-research-google-research/GRBM.toml",
+    "metrics": {
+        "nb_code_cells": 2,
+        "nb_markdown_cells": 2,
+        "dependencies_installation_detected": false,
+        "code_quality": {
+            "pylint_score": {
+                "score": 0,
+                "count_by_severity": {
+                    "convention": 262,
+                    "error": 20,
+                    "fatal": 0,
+                    "info": 0,
+                    "refactor": 30,
+                    "statement": 806,
+                    "warning": 799
+                },
+                "count_by_messages": {
+                    "line-too-long": 19,
+                    "bad-indentation": 759,
+                    "trailing-whitespace": 3,
+                    "superfluous-parens": 1,
+                    "too-many-lines": 1,
+                    "missing-module-docstring": 1,
+                    "import-error": 17,
+                    "consider-using-from-import": 2,
+                    "wrong-import-position": 24,
+                    "pointless-string-statement": 5,
+                    "missing-class-docstring": 4,
+                    "arguments-renamed": 1,
+                    "consider-using-f-string": 6,
+                    "missing-function-docstring": 46,
+                    "invalid-name": 123,
+                    "import-outside-toplevel": 3,
+                    "too-many-arguments": 8,
+                    "unused-variable": 2,
+                    "too-many-locals": 7,
+                    "f-string-without-interpolation": 6,
+                    "useless-object-inheritance": 1,
+                    "consider-using-generator": 1,
+                    "bad-super-call": 1,
+                    "reimported": 19,
+                    "super-with-arguments": 1,
+                    "too-many-instance-attributes": 1,
+                    "chained-comparison": 1,
+                    "too-many-public-methods": 1,
+                    "too-many-statements": 3,
+                    "logging-format-interpolation": 1,
+                    "unspecified-encoding": 3,
+                    "too-many-function-args": 1,
+                    "logging-fstring-interpolation": 2,
+                    "too-many-branches": 1,
+                    "function-redefined": 1,
+                    "consider-using-with": 3,
+                    "consider-using-enumerate": 1,
+                    "wrong-import-order": 15,
+                    "ungrouped-imports": 15,
+                    "unused-import": 1
+                }
+            },
+            "mypy_score": {
+                "score": 0.9883192731992213,
+                "count_by_severity": {
+                    "error": 18
+                },
+                "count_by_messages": {
+                    "import": 14,
+                    "var-annotated": 1,
+                    "no-redef": 3
+                }
+            }
+        }
+    },
+    "profile": [
+        {
+            "cell_type": "markdown",
+            "nb_lines": 30
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1214
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 12
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 327
+        }
+    ]
+}

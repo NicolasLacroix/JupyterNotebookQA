@@ -7,8 +7,34 @@
         "nb_markdown_cells": 4,
         "dependencies_installation_detected": false,
         "code_quality": {
-            "pylint_score": 0.7142857142857135,
-            "mypy_score": 0.7142857142857143
+            "pylint_score": {
+                "score": 4.2857142857142865,
+                "count_by_severity": {
+                    "convention": 2,
+                    "error": 1,
+                    "fatal": 0,
+                    "info": 0,
+                    "refactor": 0,
+                    "statement": 14,
+                    "warning": 1
+                },
+                "count_by_messages": {
+                    "missing-module-docstring": 1,
+                    "import-error": 1,
+                    "invalid-name": 1,
+                    "unused-import": 1
+                }
+            },
+            "mypy_score": {
+                "score": 0.8571428571428572,
+                "count_by_severity": {
+                    "error": 2
+                },
+                "count_by_messages": {
+                    "import": 1,
+                    "misc": 1
+                }
+            }
         }
     },
     "profile": [
