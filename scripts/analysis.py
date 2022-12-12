@@ -3,7 +3,7 @@ import contextlib
 import io
 import json
 import sys
-import tomllib
+import tomli
 from pathlib import Path
 from typing import Any
 from uuid import uuid1
@@ -94,7 +94,7 @@ def run_analysis(
         display_error(f"File {notebook_name}.toml does not exist. Skipping.")
         return False
     with open(f"{notebook_name}.toml", mode="rb") as f:
-        notebook_metadata = tomllib.load(f)
+        notebook_metadata = tomli.load(f)
 
     display(f"========= Analysing {notebook_metadata['title']} =========\n")
 
