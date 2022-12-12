@@ -96,20 +96,42 @@ def run_analysis(
     if not Path(f"{notebook_name}.ipynb").exists():
         display_error(f"File {notebook_name}.ipynb does not exist. Skipping.")
         return False
-    with open(f"{notebook_name}.ipynb", encoding="utf-8") as f:
-        notebook = json.load(f)
-
+    
     if not Path(f"{notebook_name}.toml").exists():
         display_error(f"File {notebook_name}.toml does not exist. Skipping.")
         return False
     with open(f"{notebook_name}.toml", mode="rb") as f:
         notebook_metadata = tomli.load(f)
+    
+    try:
+        with open(f"{notebook_name}.ipynb", encoding="utf-8") as f:
+            notebook = json.load(f)
+    except json.JSONDecodeError:
+        with open(
+            f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
+            mode="w",
+            encoding="utf-8",
+        ) as f:
+            json.dump({'error': 'invalid JSON'}, f, indent=4)
+        display("\nerror")
+        return False
 
     display(f"========= Analysing {notebook_metadata['title']} =========\n")
 
     display("Analysing notebook structure...")
-    code_cells = get_code_cells(notebook)
-    markdown_cells = get_markdown_cells(notebook)
+    try:
+        code_cells = get_code_cells(notebook)
+        markdown_cells = get_markdown_cells(notebook)
+    except KeyError:
+        with open(
+            f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
+            mode="w",
+            encoding="utf-8",
+        ) as f:
+            json.dump({'error': 'unsupported notebook structure'}, f, indent=4)
+        display("\nerror")
+        return False
+
     profile = compute_profile(notebook)
 
     display("Analysing code quality (pylint, mypy)")
