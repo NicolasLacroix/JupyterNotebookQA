@@ -4,6 +4,7 @@ import io
 import json
 import sys
 import tomli
+from collections import Counter
 from pathlib import Path
 from typing import Any
 from uuid import uuid1
@@ -46,9 +47,8 @@ def run_code_analysis(code_cells):
     Path("tmp/").mkdir(parents=True, exist_ok=True)
     tmp_filename = f"tmp/code_{uuid1()}.tmp.py"
     tmp_path = Path(tmp_filename)
+    tmp_path.touch(exist_ok=True)
 
-    pylint_score = None
-    mypy_score = None
     total_nb_lines = 0
     for code_cell in code_cells:
         with open(tmp_filename, mode="a", encoding='utf-8') as f:
@@ -57,13 +57,22 @@ def run_code_analysis(code_cells):
             f.writelines(lines)
     with contextlib.redirect_stdout(io.StringIO()):
         pylint_run = Run([tmp_filename], exit=False)
-        pylint_score = pylint_run.linter.stats.global_note
+        pylint_result = {
+            'score': pylint_run.linter.stats.global_note,
+            'count_by_severity': list(pylint_run.linter.stats.by_module.values())[0],
+            'count_by_messages': pylint_run.linter.stats.by_msg
+        }
         mypy_run = api.run([tmp_filename])
-        mypy_nb_errors = mypy_run[0].strip().split('\n')[-1].split()[1]
-    mypy_score = 1 - int(mypy_nb_errors) / total_nb_lines if mypy_nb_errors != 'no' else 100
+    mypy_output_lines = [line for line in mypy_run[0].strip().split('\n') if ': note: ' not in line and 'module is installed, but missing library stubs or py.typed marker' not in line][:-1]
+    mypy_nb_errors = len(tuple(line for line in mypy_output_lines if ': error: ' in line))
+    mypy_result = {
+        'score': 1 - int(mypy_nb_errors) / total_nb_lines if mypy_nb_errors > 0 else 100,
+        'count_by_severity': dict(Counter(e.split(': ')[1] for e in mypy_output_lines)),
+        'count_by_messages': dict(Counter(e.split('  [')[1][:-1] for e in mypy_output_lines)),
+    }
     tmp_path.unlink()
 
-    return pylint_score, mypy_score
+    return pylint_result, mypy_result
 
 
 def compute_profile(data):
@@ -116,7 +125,7 @@ def run_analysis(
             "nb_code_cells": len(code_cells),
             "nb_markdown_cells": len(markdown_cells),
             # TODO: check !pip use for dependencies installation
-            "dependencies_installation_detected": "!pip " in code_cells[0]["source"],
+            "dependencies_installation_detected": "!pip " in code_cells[0]["source"] if code_cells else False,
             "code_quality": {
                 "pylint_score": pylint_score,
                 "mypy_score": mypy_score,
