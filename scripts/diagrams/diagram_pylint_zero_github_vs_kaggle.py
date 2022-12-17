@@ -38,6 +38,12 @@ if __name__ == '__main__':
     kaggle_zero_bars = ax.bar("Kaggle (PL = 0)", pylint_zero_kaggle, 0.5, color='b')
     kaggle__not_zero_bars = ax.bar("Kaggle (PL > 0)", pylint_not_zero_kaggle, 0.5, color='b')
 
+    names_list = ["GitHub (PL = 0)", "GitHub (PL > 0)", "Kaggle (PL = 0)", "Kaggle (PL > 0)"]
+    values_list = [pylint_zero_github, pylint_not_zero_github, pylint_zero_kaggle, pylint_not_zero_kaggle]
+    for i, (name, height) in enumerate(zip(names_list, values_list)):
+        ax.text(i, height-5, ' ' + str(values_list[i]), color='seashell',
+                ha='center', va='top', rotation=0, fontsize=18)
+
     ax.set_title('Pylint of notebooks')
 
     plt.show()
