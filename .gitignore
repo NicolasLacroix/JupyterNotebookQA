@@ -137,7 +137,7 @@ tmp/
 
 # Notebooks repositories
 notebooks/github/**/*.ipynb
-notebooks/kaggle/
+
 
 # Results of analysis
 results/

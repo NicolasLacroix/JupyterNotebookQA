@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def plot_profile():
 
     elems = dict()
-    toml_files = list(glob.glob(('../notebooks/kaggle/*/*.toml'), recursive=True))
+    toml_files = list(glob.glob(('../notebooks/*/*/*.toml'), recursive=True))
     for toml_file in toml_files:
         with open(toml_file, "rb") as f2:
             data = tomllib.load(f2)
@@ -15,19 +15,15 @@ def plot_profile():
     elems = dict(sorted(elems.items()))
 
     json_results = list(glob.glob('../results/*.json', recursive=True))
-    print(elems)
     x = []
     y = []
     for key, val in elems.items():
-        print(val)
         res = [i for i in json_results if val in i]
-        print(res)
         if len(res) > 0:
             with open(res[0]) as f:
                 json_data = json.load(f)
                 if "metrics" in json_data and json_data['metrics']['code_quality']['pylint_score']['score'] > 0:
                     x.append(key)
-                    print(json_data['metrics']['code_quality']['pylint_score']['score'])
                     y.append(json_data['metrics']['code_quality']['pylint_score']['score'])
     ########################
     fig, ax = plt.subplots()
