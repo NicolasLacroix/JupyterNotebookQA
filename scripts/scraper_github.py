@@ -50,6 +50,8 @@ def create_toml(directory: str, repository: dict[str, str]) -> None:
 
 
 def file_contains_code(location_from) -> bool:
+    if os.stat(location_from).st_size == 0:
+        return False
     with open(location_from, 'rb', 0) as file, mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as s:
         if s.find(b'"cell_type": "code"') != -1:
             # Code found, the Jupyter Notebook contains code.

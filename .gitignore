@@ -136,7 +136,7 @@ tmp/
 .idea/
 
 # Notebooks repositories
-notebooks/github/
+notebooks/github/**/*.ipynb
 notebooks/kaggle/
 
 # Results of analysis
