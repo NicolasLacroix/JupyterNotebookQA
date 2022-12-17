@@ -17,10 +17,9 @@ def plot_profile():
     ########################
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    sizes = np.random.uniform(15, 80, len(x))
     colors = np.random.uniform(15, 80, len(x))
     ax.set(xlim=(0, 10), xticks=np.arange(1, 10), ylim=(0, 100), yticks=np.arange(0, 100, 5))
-    ax.scatter(x, y, s=sizes, c=colors, vmin=0, vmax=100)
+    ax.scatter(x, y, s=15, c=colors, vmin=0, vmax=100)
     ax.set_xlabel('score')
     ax.set_ylabel('nb_code_cells')
     plt.show()
