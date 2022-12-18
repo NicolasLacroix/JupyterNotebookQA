@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.plot(occurrences.keys(), occurrences.values(), color='r')
+    ax.plot(occurrences.keys(), occurrences.values(), '.-', color='r')
     ax.set_xlabel('Pylint score')
     ax.set_ylabel('Number of notebooks')
     ax.set_title('Score of notebooks')

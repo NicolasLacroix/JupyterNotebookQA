@@ -35,7 +35,7 @@ if __name__ == '__main__':
     ax = fig.add_subplot(111)
     github_scatter = ax.scatter(code_github, markdown_github, color='r')
     kaggle_scatter = ax.scatter(code_kaggle, markdown_kaggle, color='b')
-    ax.legend((github_scatter, kaggle_scatter), ("GitHub", "Kaggle"))
+    ax.legend(("GitHub", "Kaggle"))
     ax.set_xlabel('Cells of code')
     ax.set_ylabel('Cells of markdown')
     ax.set_title('Cells of code and markdown')
