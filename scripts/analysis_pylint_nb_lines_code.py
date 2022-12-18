@@ -1,6 +1,6 @@
 import glob
 import json
-import tomllib
+import tomli
 from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,7 +10,10 @@ def plot_profile(source: str):
     toml_files = list(glob.glob(('../notebooks/' + source + '/*/*.toml'), recursive=True))
     for toml_file in toml_files:
         with open(toml_file, "rb") as f2:
-            data = tomllib.load(f2)
+            data = tomli.load(f2)
+            if data['metadata']['date'].lower() == 'todo':
+                print(f'Skipping {toml_file} because of invalid todo date')
+                continue
             if source == 'github':
                 convert_date = datetime.strptime(data['metadata']['date'], '%d/%m/%Y').date()
             else:

@@ -50,9 +50,9 @@ tanulsingh077/twitter-sentiment-extaction-analysis-eda-and-model 2020-04-14 10:0
 colinmorris/loops-and-list-comprehensions 2021-11-11 14:28:13
 philippsp/exploratory-analysis-zillow 2017-05-31 18:38:04
 masumrumi/a-statistical-analysis-ml-workflow-of-titanic 2022-04-21 19:25:23
+inmine/novelai-with-webui-stable-diffusion-version 2022-12-16 13:49:36
 anokas/data-analysis-xgboost-starter-0-35460-lb 2017-04-12 14:22:20
 omarelgabry/a-journey-through-titanic 2016-11-15 18:19:03
-inmine/novelai-with-webui-stable-diffusion-version 2022-12-16 13:49:36
 benhamner/python-data-visualizations 2017-08-29 15:54:22
 kanncaa1/plotly-tutorial-for-beginners 2019-10-01 20:59:55
 rohanrao/tutorial-on-reading-large-datasets 2020-12-14 17:13:08
@@ -88,8 +88,8 @@ dlarionov/feature-engineering-xgboost 2018-07-03 14:04:02
 dansbecker/xgboost 2018-07-25 21:52:04
 dster/two-sigma-news-official-getting-started-kernel 2018-10-03 19:41:21
 artgor/eda-feature-engineering-and-everything 2019-02-21 18:49:15
-juliencs/a-study-on-regression-applied-to-the-ames-dataset 2021-03-18 15:16:37
 fabiendaniel/customer-segmentation 2019-03-21 14:19:41
+juliencs/a-study-on-regression-applied-to-the-ames-dataset 2021-03-18 15:16:37
 lavanyashukla01/how-i-made-top-0-3-on-a-kaggle-competition 2019-06-09 21:10:44
 kabure/extensive-eda-and-modeling-xgb-hyperopt 2019-08-06 15:21:20
 residentmario/summary-functions-and-maps 2022-02-14 14:47:02
