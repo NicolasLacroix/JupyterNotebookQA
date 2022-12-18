@@ -8,15 +8,15 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 5.253333333333333,
+                "score": 3.8933333333333326,
                 "count_by_severity": {
-                    "convention": 263,
-                    "error": 19,
+                    "convention": 255,
+                    "error": 53,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 75,
+                    "refactor": 67,
                     "statement": 1125,
-                    "warning": 101
+                    "warning": 100
                 },
                 "count_by_messages": {
                     "trailing-whitespace": 26,
@@ -25,31 +25,34 @@
                     "bad-indentation": 1,
                     "too-many-lines": 1,
                     "missing-module-docstring": 1,
-                    "import-error": 15,
+                    "import-error": 4,
                     "reimported": 3,
                     "consider-using-from-import": 3,
                     "useless-object-inheritance": 16,
-                    "missing-function-docstring": 43,
+                    "missing-function-docstring": 41,
                     "redefined-outer-name": 48,
+                    "abstract-method": 1,
                     "super-with-arguments": 9,
                     "redefined-builtin": 4,
                     "consider-using-generator": 1,
-                    "attribute-defined-outside-init": 5,
-                    "too-few-public-methods": 20,
                     "consider-using-f-string": 10,
                     "pointless-string-statement": 14,
                     "missing-class-docstring": 15,
-                    "invalid-name": 109,
+                    "too-few-public-methods": 12,
+                    "invalid-name": 103,
                     "too-many-instance-attributes": 4,
                     "too-many-arguments": 10,
                     "unused-variable": 2,
+                    "unsupported-membership-test": 1,
                     "no-else-return": 1,
+                    "no-member": 44,
                     "consider-using-in": 1,
                     "singleton-comparison": 1,
                     "method-hidden": 1,
                     "consider-using-enumerate": 3,
                     "too-many-nested-blocks": 4,
                     "consider-merging-isinstance": 2,
+                    "attribute-defined-outside-init": 3,
                     "undefined-variable": 1,
                     "too-many-locals": 2,
                     "unused-argument": 5,
@@ -64,13 +67,16 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9891984081864695,
+                "score": 0.9943149516770893,
                 "count_by_severity": {
-                    "error": 19
+                    "error": 10
                 },
                 "count_by_messages": {
-                    "import": 18,
-                    "name-match": 1
+                    "import": 6,
+                    "name-match": 1,
+                    "call-arg": 1,
+                    "assignment": 1,
+                    "union-attr": 1
                 }
             }
         }

@@ -8,19 +8,20 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 3.8095238095238093,
+                "score": 3.6363636363636367,
                 "count_by_severity": {
                     "convention": 5,
                     "error": 1,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 21,
-                    "warning": 3
+                    "statement": 22,
+                    "warning": 4
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 3,
                     "missing-module-docstring": 1,
+                    "unnecessary-pass": 1,
                     "wrong-import-position": 2,
                     "invalid-name": 1,
                     "no-name-in-module": 1,

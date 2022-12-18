@@ -10,17 +10,17 @@
             "pylint_score": {
                 "score": 0,
                 "count_by_severity": {
-                    "convention": 13,
+                    "convention": 12,
                     "error": 2,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 28,
-                    "warning": 8
+                    "statement": 41,
+                    "warning": 21
                 },
                 "count_by_messages": {
-                    "trailing-newlines": 1,
                     "missing-module-docstring": 1,
+                    "unnecessary-pass": 13,
                     "invalid-name": 6,
                     "wrong-import-position": 3,
                     "reimported": 1,
@@ -32,7 +32,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.8928571428571429,
+                "score": 0.926829268292683,
                 "count_by_severity": {
                     "error": 3
                 },

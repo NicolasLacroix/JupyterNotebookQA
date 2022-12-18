@@ -8,28 +8,45 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 0,
+                "score": 1.2280701754385976,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 46,
+                    "error": 25,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 1,
+                    "statement": 228,
+                    "warning": 28
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "line-too-long": 2,
+                    "trailing-whitespace": 2,
+                    "trailing-newlines": 1,
+                    "missing-module-docstring": 1,
+                    "misplaced-future": 1,
+                    "wrong-import-position": 6,
+                    "unnecessary-pass": 1,
+                    "broad-except": 1,
+                    "no-member": 21,
+                    "import-error": 1,
+                    "no-name-in-module": 1,
+                    "invalid-name": 22,
+                    "pointless-statement": 15,
+                    "missing-function-docstring": 5,
+                    "redefined-outer-name": 4,
+                    "unexpected-keyword-arg": 2,
+                    "redefined-builtin": 4,
+                    "unused-argument": 1,
+                    "consider-using-generator": 1,
+                    "consider-using-f-string": 6,
+                    "wrong-import-order": 1,
+                    "unused-import": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9971830985915493,
-                "count_by_severity": {
-                    "error": 1
-                },
-                "count_by_messages": {
-                    "syntax": 1
-                }
+                "score": 100,
+                "count_by_severity": {},
+                "count_by_messages": {}
             }
         }
     },

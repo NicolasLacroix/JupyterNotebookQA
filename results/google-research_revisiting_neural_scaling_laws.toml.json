@@ -23,7 +23,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9977116704805492,
+                "score": 0.997716894977169,
                 "count_by_severity": {
                     "error": 1
                 },

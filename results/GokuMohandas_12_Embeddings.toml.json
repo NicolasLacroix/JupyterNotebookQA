@@ -8,13 +8,13 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 3.0701754385964906,
+                "score": 2.701754385964912,
                 "count_by_severity": {
-                    "convention": 188,
-                    "error": 16,
+                    "convention": 191,
+                    "error": 20,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 23,
+                    "refactor": 21,
                     "statement": 570,
                     "warning": 104
                 },
@@ -24,15 +24,16 @@
                     "trailing-whitespace": 41,
                     "missing-module-docstring": 1,
                     "redefined-builtin": 1,
-                    "import-error": 15,
+                    "import-error": 11,
                     "wrong-import-position": 38,
                     "redefined-outer-name": 74,
                     "missing-function-docstring": 15,
-                    "invalid-name": 50,
+                    "invalid-name": 53,
                     "consider-using-f-string": 3,
                     "unspecified-encoding": 7,
                     "reimported": 7,
                     "consider-using-from-import": 1,
+                    "no-member": 8,
                     "function-redefined": 1,
                     "unused-argument": 1,
                     "useless-object-inheritance": 3,
@@ -49,7 +50,6 @@
                     "expression-not-assigned": 1,
                     "unnecessary-dunder-call": 3,
                     "super-with-arguments": 2,
-                    "too-few-public-methods": 2,
                     "consider-using-enumerate": 1,
                     "wrong-import-order": 15,
                     "ungrouped-imports": 10,
@@ -58,12 +58,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9843575418994414,
+                "score": 0.9888268156424581,
                 "count_by_severity": {
-                    "error": 14
+                    "error": 10
                 },
                 "count_by_messages": {
-                    "import": 12,
+                    "import": 8,
                     "no-redef": 1,
                     "misc": 1
                 }

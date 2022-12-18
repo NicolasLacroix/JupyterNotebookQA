@@ -1,7 +1,7 @@
 {
     "title": "extra_autodiff.toml",
-    "notebook": "notebooks/github/ageron-handson-ml2/extra_autodiff.ipynb",
-    "metadata": "notebooks/github/ageron-handson-ml2/extra_autodiff.toml",
+    "notebook": "notebooks/github/ageron-handson-ml3/extra_autodiff.ipynb",
+    "metadata": "notebooks/github/ageron-handson-ml3/extra_autodiff.toml",
     "metrics": {
         "nb_code_cells": 35,
         "nb_markdown_cells": 50,

@@ -15,13 +15,14 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 75,
-                    "warning": 16
+                    "statement": 76,
+                    "warning": 17
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 7,
                     "trailing-whitespace": 3,
                     "missing-module-docstring": 1,
+                    "unnecessary-pass": 1,
                     "import-error": 4,
                     "multiple-statements": 1,
                     "wrong-import-position": 12,
@@ -38,7 +39,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9716981132075472,
+                "score": 0.9719626168224299,
                 "count_by_severity": {
                     "error": 3
                 },

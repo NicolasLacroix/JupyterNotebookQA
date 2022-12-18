@@ -10,25 +10,52 @@
             "pylint_score": {
                 "score": 0,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 178,
+                    "error": 147,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 1,
+                    "statement": 734,
+                    "warning": 71
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "trailing-whitespace": 7,
+                    "line-too-long": 3,
+                    "bad-indentation": 12,
+                    "trailing-newlines": 1,
+                    "missing-module-docstring": 1,
+                    "broad-except": 1,
+                    "missing-function-docstring": 16,
+                    "no-member": 141,
+                    "unnecessary-pass": 4,
+                    "wrong-import-position": 14,
+                    "redefined-outer-name": 30,
+                    "invalid-name": 117,
+                    "reimported": 4,
+                    "pointless-statement": 15,
+                    "consider-using-f-string": 6,
+                    "undefined-loop-variable": 2,
+                    "unexpected-keyword-arg": 1,
+                    "no-value-for-parameter": 1,
+                    "too-many-function-args": 3,
+                    "missing-class-docstring": 1,
+                    "expression-not-assigned": 1,
+                    "global-statement": 1,
+                    "invalid-sequence-index": 1,
+                    "consider-using-generator": 1,
+                    "wrong-import-order": 8,
+                    "ungrouped-imports": 4,
+                    "unused-import": 1
                 }
             },
             "mypy_score": {
-                "score": 0.998972250770812,
+                "score": 0.9969293756397134,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 3
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "assignment": 2,
+                    "misc": 1
                 }
             }
         }

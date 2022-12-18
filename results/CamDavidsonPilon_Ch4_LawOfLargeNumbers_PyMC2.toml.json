@@ -11,19 +11,20 @@
                 "score": 0,
                 "count_by_severity": {
                     "convention": 35,
-                    "error": 23,
+                    "error": 21,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 2,
-                    "statement": 151,
-                    "warning": 16
+                    "statement": 153,
+                    "warning": 18
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 7,
                     "trailing-whitespace": 1,
                     "line-too-long": 1,
                     "missing-module-docstring": 1,
-                    "import-error": 5,
+                    "unnecessary-pass": 2,
+                    "import-error": 3,
                     "wrong-import-position": 5,
                     "invalid-name": 18,
                     "consider-using-f-string": 4,
@@ -41,12 +42,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9304347826086956,
+                "score": 0.9396551724137931,
                 "count_by_severity": {
-                    "error": 16
+                    "error": 14
                 },
                 "count_by_messages": {
-                    "import": 3,
+                    "import": 1,
                     "name-defined": 13
                 }
             }

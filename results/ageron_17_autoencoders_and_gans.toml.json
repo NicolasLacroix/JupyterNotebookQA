@@ -8,15 +8,15 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 7.510822510822511,
+                "score": 7.494600431965443,
                 "count_by_severity": {
                     "convention": 68,
                     "error": 2,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 1,
-                    "statement": 462,
-                    "warning": 36
+                    "statement": 463,
+                    "warning": 37
                 },
                 "count_by_messages": {
                     "line-too-long": 1,
@@ -24,6 +24,7 @@
                     "trailing-newlines": 1,
                     "missing-module-docstring": 1,
                     "wrong-import-position": 9,
+                    "unnecessary-pass": 1,
                     "missing-function-docstring": 10,
                     "redefined-outer-name": 29,
                     "invalid-name": 36,

@@ -11,7 +11,7 @@
                 "score": 0,
                 "count_by_severity": {
                     "convention": 5,
-                    "error": 5,
+                    "error": 4,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
@@ -22,20 +22,18 @@
                     "line-too-long": 1,
                     "missing-module-docstring": 1,
                     "undefined-variable": 4,
-                    "import-error": 1,
                     "wrong-import-position": 1,
                     "wrong-import-order": 2,
                     "unused-import": 4
                 }
             },
             "mypy_score": {
-                "score": 0.7391304347826086,
+                "score": 0.782608695652174,
                 "count_by_severity": {
-                    "error": 6
+                    "error": 5
                 },
                 "count_by_messages": {
                     "name-defined": 4,
-                    "import": 1,
                     "var-annotated": 1
                 }
             }

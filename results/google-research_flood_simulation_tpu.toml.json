@@ -15,8 +15,8 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 64,
-                    "statement": 1217,
-                    "warning": 1297
+                    "statement": 1218,
+                    "warning": 1298
                 },
                 "count_by_messages": {
                     "unknown-option-value": 10,
@@ -46,6 +46,7 @@
                     "consider-using-dict-items": 1,
                     "consider-iterating-dictionary": 1,
                     "attribute-defined-outside-init": 1,
+                    "unnecessary-pass": 1,
                     "unnecessary-lambda": 1,
                     "undefined-variable": 1,
                     "wrong-import-order": 4,
@@ -54,7 +55,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9858702633269107,
+                "score": 0.9858747993579454,
                 "count_by_severity": {
                     "error": 44
                 },

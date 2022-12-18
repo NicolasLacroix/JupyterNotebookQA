@@ -8,28 +8,29 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 6.25,
+                "score": 6.097560975609756,
                 "count_by_severity": {
                     "convention": 5,
                     "error": 1,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 40,
-                    "warning": 5
+                    "statement": 41,
+                    "warning": 6
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 3,
                     "trailing-whitespace": 1,
                     "missing-module-docstring": 1,
                     "import-error": 1,
+                    "unnecessary-pass": 1,
                     "wrong-import-position": 3,
                     "reimported": 1,
                     "unused-import": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9811320754716981,
+                "score": 0.9814814814814815,
                 "count_by_severity": {
                     "error": 1
                 },

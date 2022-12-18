@@ -23,7 +23,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9957983193277311,
+                "score": 0.9958847736625515,
                 "count_by_severity": {
                     "error": 1
                 },
@@ -164,7 +164,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 1
+            "nb_lines": 0
         }
     ]
 }

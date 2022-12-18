@@ -8,27 +8,49 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 0,
+                "score": 4.795918367346939,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 54,
+                    "error": 3,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 3,
+                    "statement": 196,
+                    "warning": 30
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "bad-indentation": 13,
+                    "line-too-long": 11,
+                    "unnecessary-semicolon": 8,
+                    "trailing-whitespace": 13,
+                    "missing-module-docstring": 1,
+                    "broad-except": 1,
+                    "misplaced-future": 1,
+                    "wrong-import-position": 11,
+                    "invalid-name": 6,
+                    "multiple-statements": 2,
+                    "consider-using-from-import": 1,
+                    "import-error": 2,
+                    "useless-object-inheritance": 1,
+                    "redefined-outer-name": 3,
+                    "too-few-public-methods": 1,
+                    "no-value-for-parameter": 1,
+                    "consider-using-enumerate": 1,
+                    "expression-not-assigned": 1,
+                    "consider-using-f-string": 5,
+                    "missing-function-docstring": 3,
+                    "wrong-import-order": 1,
+                    "unused-import": 3
                 }
             },
             "mypy_score": {
-                "score": 0.9973262032085561,
+                "score": 0.9866310160427807,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 5
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "arg-type": 3,
+                    "import": 2
                 }
             }
         }

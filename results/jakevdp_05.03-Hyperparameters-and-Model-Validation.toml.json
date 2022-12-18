@@ -15,8 +15,8 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 101,
-                    "warning": 16
+                    "statement": 102,
+                    "warning": 17
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 9,
@@ -30,13 +30,14 @@
                     "missing-function-docstring": 2,
                     "invalid-name": 5,
                     "redefined-outer-name": 4,
+                    "unnecessary-pass": 1,
                     "multiple-statements": 1,
                     "consider-using-f-string": 2,
                     "ungrouped-imports": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9767441860465116,
+                "score": 0.9769230769230769,
                 "count_by_severity": {
                     "error": 3
                 },

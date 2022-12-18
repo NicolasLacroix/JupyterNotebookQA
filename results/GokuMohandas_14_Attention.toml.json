@@ -8,13 +8,13 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 3.459715639810427,
+                "score": 3.1279620853080567,
                 "count_by_severity": {
-                    "convention": 126,
-                    "error": 10,
+                    "convention": 127,
+                    "error": 13,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 19,
+                    "refactor": 17,
                     "statement": 422,
                     "warning": 81
                 },
@@ -22,11 +22,12 @@
                     "trailing-whitespace": 20,
                     "missing-module-docstring": 1,
                     "redefined-builtin": 1,
-                    "import-error": 10,
                     "consider-using-from-import": 1,
-                    "invalid-name": 41,
+                    "invalid-name": 42,
+                    "no-member": 8,
                     "reimported": 6,
                     "wrong-import-position": 22,
+                    "import-error": 5,
                     "redefined-outer-name": 54,
                     "unused-argument": 1,
                     "useless-object-inheritance": 3,
@@ -44,7 +45,6 @@
                     "attribute-defined-outside-init": 1,
                     "unnecessary-dunder-call": 3,
                     "super-with-arguments": 2,
-                    "too-few-public-methods": 2,
                     "consider-using-enumerate": 1,
                     "wrong-import-order": 11,
                     "ungrouped-imports": 7,
@@ -52,12 +52,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9859594383775351,
+                "score": 0.9921996879875195,
                 "count_by_severity": {
-                    "error": 9
+                    "error": 5
                 },
                 "count_by_messages": {
-                    "import": 9
+                    "import": 5
                 }
             }
         }

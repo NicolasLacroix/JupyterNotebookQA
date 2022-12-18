@@ -15,14 +15,15 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 5,
-                    "statement": 132,
-                    "warning": 104
+                    "statement": 133,
+                    "warning": 105
                 },
                 "count_by_messages": {
                     "trailing-whitespace": 7,
                     "bad-indentation": 96,
                     "trailing-newlines": 1,
                     "missing-module-docstring": 1,
+                    "unnecessary-pass": 1,
                     "import-error": 2,
                     "unused-variable": 2,
                     "invalid-name": 15,
@@ -37,7 +38,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9966442953020134,
+                "score": 0.9966555183946488,
                 "count_by_severity": {
                     "error": 1
                 },

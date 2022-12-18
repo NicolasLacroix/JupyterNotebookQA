@@ -23,7 +23,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9999070545589739,
+                "score": 0.9999088838268793,
                 "count_by_severity": {
                     "error": 1
                 },
@@ -56,7 +56,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 492
+            "nb_lines": 669
         },
         {
             "cell_type": "code",
@@ -64,7 +64,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 1973
+            "nb_lines": 1990
         },
         {
             "cell_type": "code",
@@ -92,7 +92,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 148
+            "nb_lines": 163
         },
         {
             "cell_type": "code",

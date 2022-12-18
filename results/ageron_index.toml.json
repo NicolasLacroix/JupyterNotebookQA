@@ -1,7 +1,7 @@
 {
     "title": "index.toml",
-    "notebook": "notebooks/github/ageron-handson-ml2/index.ipynb",
-    "metadata": "notebooks/github/ageron-handson-ml2/index.toml",
+    "notebook": "notebooks/github/ageron-handson-ml3/index.ipynb",
+    "metadata": "notebooks/github/ageron-handson-ml3/index.toml",
     "metrics": {
         "nb_code_cells": 1,
         "nb_markdown_cells": 9,

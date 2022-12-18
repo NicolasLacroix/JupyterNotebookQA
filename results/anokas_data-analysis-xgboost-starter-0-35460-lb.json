@@ -8,27 +8,45 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 0,
+                "score": 4.885057471264368,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 52,
+                    "error": 6,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 3,
+                    "statement": 174,
+                    "warning": 4
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "line-too-long": 11,
+                    "trailing-whitespace": 5,
+                    "missing-module-docstring": 1,
+                    "import-error": 5,
+                    "unnecessary-pass": 1,
+                    "consider-using-f-string": 13,
+                    "wrong-import-position": 7,
+                    "consider-using-generator": 2,
+                    "missing-function-docstring": 3,
+                    "consider-iterating-dictionary": 4,
+                    "invalid-name": 4,
+                    "redefined-outer-name": 1,
+                    "no-else-return": 1,
+                    "expression-not-assigned": 1,
+                    "no-name-in-module": 1,
+                    "wrong-import-order": 3,
+                    "ungrouped-imports": 1,
+                    "unused-import": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9998947035906076,
+                "score": 0.9993687532877433,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 6
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "import": 4,
+                    "assignment": 2
                 }
             }
         }

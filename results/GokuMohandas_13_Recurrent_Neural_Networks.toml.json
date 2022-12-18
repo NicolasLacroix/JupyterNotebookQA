@@ -8,13 +8,13 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 3.977528089887641,
+                "score": 3.0786516853932593,
                 "count_by_severity": {
-                    "convention": 130,
-                    "error": 8,
+                    "convention": 132,
+                    "error": 16,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 19,
+                    "refactor": 17,
                     "statement": 445,
                     "warning": 79
                 },
@@ -22,11 +22,12 @@
                     "trailing-whitespace": 25,
                     "missing-module-docstring": 1,
                     "redefined-builtin": 1,
-                    "import-error": 8,
                     "consider-using-from-import": 1,
-                    "invalid-name": 45,
+                    "invalid-name": 47,
+                    "no-member": 12,
                     "reimported": 4,
                     "wrong-import-position": 19,
+                    "import-error": 4,
                     "redefined-outer-name": 55,
                     "unused-argument": 1,
                     "useless-object-inheritance": 3,
@@ -45,7 +46,6 @@
                     "unnecessary-dunder-call": 3,
                     "expression-not-assigned": 1,
                     "super-with-arguments": 2,
-                    "too-few-public-methods": 2,
                     "consider-using-enumerate": 1,
                     "wrong-import-order": 10,
                     "ungrouped-imports": 6,
@@ -53,12 +53,13 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9852724594992637,
+                "score": 0.9867452135493373,
                 "count_by_severity": {
-                    "error": 10
+                    "error": 9
                 },
                 "count_by_messages": {
-                    "import": 8,
+                    "import": 4,
+                    "assignment": 3,
                     "attr-defined": 2
                 }
             }

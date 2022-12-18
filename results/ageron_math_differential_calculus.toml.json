@@ -1,22 +1,22 @@
 {
     "title": "math_differential_calculus.toml",
-    "notebook": "notebooks/github/ageron-handson-ml2/math_differential_calculus.ipynb",
-    "metadata": "notebooks/github/ageron-handson-ml2/math_differential_calculus.toml",
+    "notebook": "notebooks/github/ageron-handson-ml3/math_differential_calculus.ipynb",
+    "metadata": "notebooks/github/ageron-handson-ml3/math_differential_calculus.toml",
     "metrics": {
         "nb_code_cells": 14,
         "nb_markdown_cells": 66,
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 1.581196581196581,
+                "score": 1.6309012875536482,
                 "count_by_severity": {
-                    "convention": 113,
+                    "convention": 112,
                     "error": 5,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 5,
-                    "statement": 234,
-                    "warning": 54
+                    "statement": 233,
+                    "warning": 53
                 },
                 "count_by_messages": {
                     "bad-indentation": 9,
@@ -33,15 +33,14 @@
                     "unnecessary-lambda": 2,
                     "function-redefined": 5,
                     "unused-variable": 2,
-                    "wrong-import-position": 2,
                     "too-many-arguments": 1,
+                    "wrong-import-position": 1,
                     "wrong-import-order": 1,
-                    "ungrouped-imports": 1,
-                    "unused-import": 1
+                    "ungrouped-imports": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9828571428571429,
+                "score": 0.9827586206896551,
                 "count_by_severity": {
                     "error": 6
                 },
@@ -67,7 +66,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 9
+            "nb_lines": 8
         },
         {
             "cell_type": "markdown",
@@ -271,7 +270,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 50
+            "nb_lines": 48
         },
         {
             "cell_type": "markdown",

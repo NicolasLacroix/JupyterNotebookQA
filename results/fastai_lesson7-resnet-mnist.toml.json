@@ -15,8 +15,8 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 1,
-                    "statement": 50,
-                    "warning": 9
+                    "statement": 51,
+                    "warning": 10
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 2,
@@ -24,6 +24,7 @@
                     "trailing-whitespace": 1,
                     "trailing-newlines": 1,
                     "missing-module-docstring": 1,
+                    "unnecessary-pass": 1,
                     "import-error": 1,
                     "wildcard-import": 1,
                     "undefined-variable": 53,
@@ -37,7 +38,7 @@
                 }
             },
             "mypy_score": {
-                "score": 0.44318181818181823,
+                "score": 0.449438202247191,
                 "count_by_severity": {
                     "error": 49
                 },

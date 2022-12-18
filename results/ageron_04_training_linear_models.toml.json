@@ -1,57 +1,52 @@
 {
     "title": "04_training_linear_models.toml",
-    "notebook": "notebooks/github/ageron-handson-ml2/04_training_linear_models.ipynb",
-    "metadata": "notebooks/github/ageron-handson-ml2/04_training_linear_models.toml",
+    "notebook": "notebooks/github/ageron-handson-ml3/04_training_linear_models.ipynb",
+    "metadata": "notebooks/github/ageron-handson-ml3/04_training_linear_models.toml",
     "metrics": {
-        "nb_code_cells": 86,
-        "nb_markdown_cells": 51,
+        "nb_code_cells": 81,
+        "nb_markdown_cells": 54,
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 7.1451355661881975,
+                "score": 7.313432835820896,
                 "count_by_severity": {
-                    "convention": 103,
-                    "error": 2,
+                    "convention": 80,
+                    "error": 10,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 1,
-                    "statement": 627,
-                    "warning": 65
+                    "statement": 670,
+                    "warning": 49
                 },
                 "count_by_messages": {
-                    "line-too-long": 1,
-                    "trailing-whitespace": 3,
                     "trailing-newlines": 1,
                     "missing-module-docstring": 1,
-                    "wrong-import-position": 26,
-                    "missing-function-docstring": 9,
-                    "reimported": 9,
+                    "wrong-import-position": 24,
+                    "missing-function-docstring": 8,
+                    "invalid-name": 38,
+                    "reimported": 4,
                     "pointless-statement": 19,
-                    "invalid-name": 48,
-                    "redefined-outer-name": 35,
-                    "consider-using-f-string": 3,
-                    "multiple-statements": 3,
+                    "expression-not-assigned": 2,
+                    "redefined-outer-name": 23,
                     "function-redefined": 1,
                     "too-many-arguments": 1,
                     "unused-variable": 1,
-                    "no-member": 1,
-                    "wrong-import-order": 2,
-                    "ungrouped-imports": 6,
-                    "unused-import": 1
+                    "no-member": 9,
+                    "wrong-import-order": 3,
+                    "ungrouped-imports": 5
                 }
             },
             "mypy_score": {
-                "score": 0.9734748010610079,
+                "score": 0.9846153846153847,
                 "count_by_severity": {
-                    "error": 20
+                    "error": 13
                 },
                 "count_by_messages": {
-                    "var-annotated": 1,
                     "no-redef": 1,
-                    "assignment": 6,
-                    "call-overload": 3,
-                    "index": 3,
-                    "attr-defined": 6
+                    "assignment": 3,
+                    "call-overload": 2,
+                    "attr-defined": 5,
+                    "index": 2
                 }
             }
         }
@@ -79,11 +74,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 35
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
+            "nb_lines": 3
         },
         {
             "cell_type": "markdown",
@@ -92,6 +83,30 @@
         {
             "cell_type": "code",
             "nb_lines": 4
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 7
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 10
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
         },
         {
             "cell_type": "code",
@@ -99,7 +114,11 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 2
+            "nb_lines": 12
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 4
         },
         {
             "cell_type": "code",
@@ -111,15 +130,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 8
+            "nb_lines": 15
         },
         {
             "cell_type": "code",
@@ -148,66 +159,6 @@
         {
             "cell_type": "markdown",
             "nb_lines": 2
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 9
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 18
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 11
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 3
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 28
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 4
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 25
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 3
         },
         {
             "cell_type": "code",
@@ -219,35 +170,11 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 3
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 6
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 4
-        },
-        {
-            "cell_type": "code",
             "nb_lines": 1
         },
         {
             "cell_type": "code",
-            "nb_lines": 3
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 11
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 23
+            "nb_lines": 39
         },
         {
             "cell_type": "markdown",
@@ -255,22 +182,14 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 18
+            "nb_lines": 2
         },
         {
             "cell_type": "code",
-            "nb_lines": 5
+            "nb_lines": 37
         },
         {
             "cell_type": "code",
-            "nb_lines": 11
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "markdown",
             "nb_lines": 1
         },
         {
@@ -279,18 +198,38 @@
         },
         {
             "cell_type": "code",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 48
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
             "nb_lines": 4
         },
         {
             "cell_type": "code",
-            "nb_lines": 3
+            "nb_lines": 9
         },
         {
             "cell_type": "code",
-            "nb_lines": 29
+            "nb_lines": 5
         },
         {
-            "cell_type": "markdown",
+            "cell_type": "code",
             "nb_lines": 1
         },
         {
@@ -298,24 +237,36 @@
             "nb_lines": 3
         },
         {
+            "cell_type": "code",
+            "nb_lines": 16
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 25
+        },
+        {
             "cell_type": "markdown",
             "nb_lines": 1
         },
         {
             "cell_type": "code",
-            "nb_lines": 11
+            "nb_lines": 21
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
+            "nb_lines": 9
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 15
         },
         {
             "cell_type": "markdown",
             "nb_lines": 1
         },
         {
-            "cell_type": "code",
-            "nb_lines": 4
+            "cell_type": "markdown",
+            "nb_lines": 1
         },
         {
             "cell_type": "markdown",
@@ -327,11 +278,11 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 24
+            "nb_lines": 8
         },
         {
-            "cell_type": "markdown",
-            "nb_lines": 1
+            "cell_type": "code",
+            "nb_lines": 5
         },
         {
             "cell_type": "code",
@@ -339,15 +290,51 @@
         },
         {
             "cell_type": "code",
+            "nb_lines": 4
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 5
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 6
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
             "nb_lines": 1
         },
         {
             "cell_type": "code",
-            "nb_lines": 3
+            "nb_lines": 5
         },
         {
             "cell_type": "code",
-            "nb_lines": 18
+            "nb_lines": 10
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 78
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 5
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
         },
         {
             "cell_type": "code",
@@ -363,63 +350,15 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 13
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 3
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 2
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 3
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 5
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
             "nb_lines": 19
         },
         {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 1
-        },
-        {
             "cell_type": "markdown",
             "nb_lines": 1
         },
         {
             "cell_type": "code",
-            "nb_lines": 36
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 5
-        },
-        {
-            "cell_type": "code",
-            "nb_lines": 30
+            "nb_lines": 4
         },
         {
             "cell_type": "code",
@@ -430,31 +369,7 @@
             "nb_lines": 1
         },
         {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 2
-        },
-        {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
             "cell_type": "code",
-            "nb_lines": 2
-        },
-        {
-            "cell_type": "markdown",
             "nb_lines": 1
         },
         {
@@ -462,7 +377,15 @@
             "nb_lines": 1
         },
         {
-            "cell_type": "markdown",
+            "cell_type": "code",
+            "nb_lines": 9
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 26
+        },
+        {
+            "cell_type": "code",
             "nb_lines": 1
         },
         {
@@ -470,12 +393,8 @@
             "nb_lines": 1
         },
         {
-            "cell_type": "markdown",
-            "nb_lines": 1
-        },
-        {
             "cell_type": "code",
-            "nb_lines": 16
+            "nb_lines": 35
         },
         {
             "cell_type": "markdown",
@@ -486,6 +405,66 @@
             "nb_lines": 6
         },
         {
+            "cell_type": "code",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 31
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 14
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 2
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 2
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 17
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 2
+        },
+        {
             "cell_type": "markdown",
             "nb_lines": 1
         },
@@ -504,6 +483,14 @@
         {
             "cell_type": "code",
             "nb_lines": 3
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 1
+        },
+        {
+            "cell_type": "code",
+            "nb_lines": 5
         },
         {
             "cell_type": "markdown",
@@ -527,7 +514,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 16
+            "nb_lines": 18
         },
         {
             "cell_type": "markdown",
@@ -551,7 +538,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 19
+            "nb_lines": 22
         },
         {
             "cell_type": "markdown",
@@ -587,7 +574,7 @@
         },
         {
             "cell_type": "code",
-            "nb_lines": 30
+            "nb_lines": 29
         },
         {
             "cell_type": "markdown",

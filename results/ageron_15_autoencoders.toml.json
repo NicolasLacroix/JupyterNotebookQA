@@ -10,25 +10,51 @@
             "pylint_score": {
                 "score": 0,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 185,
+                    "error": 115,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 3,
+                    "statement": 663,
+                    "warning": 46
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "line-too-long": 13,
+                    "trailing-whitespace": 4,
+                    "trailing-newlines": 1,
+                    "missing-module-docstring": 1,
+                    "broad-except": 1,
+                    "missing-function-docstring": 8,
+                    "no-member": 111,
+                    "unnecessary-pass": 1,
+                    "wrong-import-position": 11,
+                    "dangerous-default-value": 2,
+                    "redefined-outer-name": 36,
+                    "invalid-name": 113,
+                    "import-error": 1,
+                    "no-name-in-module": 1,
+                    "consider-using-f-string": 26,
+                    "unused-variable": 1,
+                    "reimported": 4,
+                    "too-many-arguments": 1,
+                    "too-many-locals": 1,
+                    "not-context-manager": 1,
+                    "consider-using-dict-comprehension": 1,
+                    "function-redefined": 1,
+                    "wrong-import-order": 6,
+                    "ungrouped-imports": 2,
+                    "unused-import": 1
                 }
             },
             "mypy_score": {
-                "score": 0.9987908101571947,
+                "score": 0.9939613526570048,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 5
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "assignment": 2,
+                    "index": 2,
+                    "no-redef": 1
                 }
             }
         }

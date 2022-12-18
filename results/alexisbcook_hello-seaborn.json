@@ -1,38 +1,39 @@
 {
-    "title": "notebook.ipynb",
-    "notebook": "notebooks/github/notebook.ipynb",
-    "metadata": "notebooks/github/notebook.toml",
+    "title": "hello-seaborn",
+    "notebook": "notebooks/kaggle/alexisbcook-hello-seaborn/hello-seaborn.ipynb",
+    "metadata": "notebooks/kaggle/alexisbcook-hello-seaborn/hello-seaborn.toml",
     "metrics": {
         "nb_code_cells": 4,
-        "nb_markdown_cells": 4,
+        "nb_markdown_cells": 6,
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 4.2857142857142865,
+                "score": 0,
                 "count_by_severity": {
-                    "convention": 2,
+                    "convention": 5,
                     "error": 1,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 0,
-                    "statement": 14,
+                    "statement": 11,
                     "warning": 1
                 },
                 "count_by_messages": {
+                    "trailing-whitespace": 1,
                     "missing-module-docstring": 1,
+                    "wrong-import-position": 2,
+                    "unnecessary-pass": 1,
                     "import-error": 1,
-                    "invalid-name": 1,
-                    "unused-import": 1
+                    "invalid-name": 1
                 }
             },
             "mypy_score": {
-                "score": 0.8571428571428572,
+                "score": 0.9981785063752276,
                 "count_by_severity": {
-                    "error": 2
+                    "error": 1
                 },
                 "count_by_messages": {
-                    "import": 1,
-                    "misc": 1
+                    "import": 1
                 }
             }
         }
@@ -40,35 +41,43 @@
     "profile": [
         {
             "cell_type": "markdown",
-            "nb_lines": 9
+            "nb_lines": 2053
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
+            "nb_lines": 161
         },
         {
             "cell_type": "markdown",
-            "nb_lines": 1
+            "nb_lines": 755
         },
         {
             "cell_type": "code",
-            "nb_lines": 3
+            "nb_lines": 180
         },
         {
             "cell_type": "markdown",
-            "nb_lines": 1
+            "nb_lines": 2798
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
+            "nb_lines": 53
         },
         {
             "cell_type": "markdown",
-            "nb_lines": 1
+            "nb_lines": 372
         },
         {
             "cell_type": "code",
-            "nb_lines": 4
+            "nb_lines": 155
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 348
+        },
+        {
+            "cell_type": "markdown",
+            "nb_lines": 162
         }
     ]
 }

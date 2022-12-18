@@ -15,8 +15,8 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 3,
-                    "statement": 86,
-                    "warning": 68
+                    "statement": 87,
+                    "warning": 69
                 },
                 "count_by_messages": {
                     "bad-indentation": 64,
@@ -32,6 +32,7 @@
                     "too-few-public-methods": 1,
                     "too-many-locals": 1,
                     "redefined-outer-name": 2,
+                    "unnecessary-pass": 1,
                     "f-string-without-interpolation": 1,
                     "wrong-import-order": 3
                 }

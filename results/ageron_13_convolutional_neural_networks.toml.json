@@ -10,25 +10,50 @@
             "pylint_score": {
                 "score": 0,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 149,
+                    "error": 72,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 5,
+                    "statement": 548,
+                    "warning": 57
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "trailing-whitespace": 9,
+                    "line-too-long": 8,
+                    "trailing-newlines": 1,
+                    "missing-module-docstring": 1,
+                    "broad-except": 1,
+                    "missing-function-docstring": 12,
+                    "no-member": 62,
+                    "unnecessary-pass": 1,
+                    "wrong-import-position": 24,
+                    "redefined-outer-name": 24,
+                    "reimported": 9,
+                    "too-many-function-args": 1,
+                    "invalid-name": 65,
+                    "undefined-loop-variable": 2,
+                    "consider-using-f-string": 8,
+                    "consider-using-with": 2,
+                    "pointless-statement": 18,
+                    "import-error": 5,
+                    "no-name-in-module": 4,
+                    "consider-using-from-import": 2,
+                    "too-many-locals": 1,
+                    "wrong-import-order": 11,
+                    "ungrouped-imports": 10,
+                    "unused-import": 2
                 }
             },
             "mypy_score": {
-                "score": 0.9985775248933144,
+                "score": 0.9957386363636364,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 3
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "assignment": 1,
+                    "import": 1,
+                    "arg-type": 1
                 }
             }
         }

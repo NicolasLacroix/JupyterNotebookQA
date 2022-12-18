@@ -8,15 +8,15 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 3.9336492890995256,
+                "score": 4.278959810874704,
                 "count_by_severity": {
                     "convention": 133,
-                    "error": 10,
+                    "error": 7,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 9,
-                    "statement": 422,
-                    "warning": 64
+                    "statement": 423,
+                    "warning": 65
                 },
                 "count_by_messages": {
                     "unnecessary-semicolon": 22,
@@ -25,9 +25,10 @@
                     "trailing-newlines": 1,
                     "anomalous-backslash-in-string": 3,
                     "missing-module-docstring": 1,
-                    "import-error": 9,
+                    "unnecessary-pass": 1,
                     "consider-using-from-import": 1,
                     "consider-using-f-string": 12,
+                    "import-error": 6,
                     "wrong-import-position": 15,
                     "invalid-name": 26,
                     "useless-object-inheritance": 2,
@@ -47,12 +48,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9847560975609756,
+                "score": 0.9878234398782344,
                 "count_by_severity": {
-                    "error": 10
+                    "error": 8
                 },
                 "count_by_messages": {
-                    "import": 5,
+                    "import": 3,
                     "attr-defined": 3,
                     "no-redef": 1,
                     "assignment": 1

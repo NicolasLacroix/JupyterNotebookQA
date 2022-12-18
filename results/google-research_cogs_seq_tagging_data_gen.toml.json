@@ -15,8 +15,8 @@
                     "fatal": 0,
                     "info": 0,
                     "refactor": 4,
-                    "statement": 254,
-                    "warning": 246
+                    "statement": 255,
+                    "warning": 247
                 },
                 "count_by_messages": {
                     "bad-indentation": 238,
@@ -31,11 +31,12 @@
                     "too-few-public-methods": 1,
                     "too-many-locals": 1,
                     "no-else-continue": 1,
+                    "unnecessary-pass": 1,
                     "unused-import": 2
                 }
             },
             "mypy_score": {
-                "score": 0.9973958333333334,
+                "score": 0.9974025974025974,
                 "count_by_severity": {
                     "error": 1
                 },

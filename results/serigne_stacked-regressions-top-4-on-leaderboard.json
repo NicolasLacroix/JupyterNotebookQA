@@ -8,27 +8,49 @@
         "dependencies_installation_detected": false,
         "code_quality": {
             "pylint_score": {
-                "score": 0,
+                "score": 4.385964912280702,
                 "count_by_severity": {
-                    "convention": 0,
-                    "error": 1,
+                    "convention": 88,
+                    "error": 4,
                     "fatal": 0,
                     "info": 0,
-                    "refactor": 0,
-                    "statement": 0,
-                    "warning": 0
+                    "refactor": 1,
+                    "statement": 228,
+                    "warning": 19
                 },
                 "count_by_messages": {
-                    "syntax-error": 1
+                    "line-too-long": 4,
+                    "trailing-whitespace": 23,
+                    "unnecessary-semicolon": 2,
+                    "superfluous-parens": 1,
+                    "anomalous-backslash-in-string": 4,
+                    "missing-module-docstring": 1,
+                    "unnecessary-pass": 1,
+                    "import-error": 3,
+                    "wrong-import-position": 16,
+                    "missing-function-docstring": 7,
+                    "unused-argument": 2,
+                    "unnecessary-lambda": 1,
+                    "consider-using-f-string": 20,
+                    "no-name-in-module": 1,
+                    "invalid-name": 10,
+                    "missing-class-docstring": 2,
+                    "attribute-defined-outside-init": 3,
+                    "redefined-outer-name": 1,
+                    "use-list-literal": 1,
+                    "pointless-string-statement": 1,
+                    "wrong-import-order": 2,
+                    "ungrouped-imports": 2,
+                    "unused-import": 4
                 }
             },
             "mypy_score": {
-                "score": 0.9999334796780417,
+                "score": 0.9998004523081017,
                 "count_by_severity": {
-                    "error": 1
+                    "error": 3
                 },
                 "count_by_messages": {
-                    "syntax": 1
+                    "import": 3
                 }
             }
         }

@@ -10,20 +10,19 @@
             "pylint_score": {
                 "score": 0,
                 "count_by_severity": {
-                    "convention": 284,
+                    "convention": 283,
                     "error": 10,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 45,
-                    "statement": 779,
-                    "warning": 737
+                    "statement": 781,
+                    "warning": 739
                 },
                 "count_by_messages": {
                     "bad-indentation": 580,
                     "trailing-whitespace": 25,
                     "line-too-long": 5,
                     "too-many-lines": 1,
-                    "trailing-newlines": 1,
                     "missing-module-docstring": 1,
                     "import-error": 7,
                     "consider-using-from-import": 1,
@@ -48,13 +47,14 @@
                     "duplicate-string-formatting-argument": 1,
                     "pointless-statement": 4,
                     "too-many-branches": 1,
+                    "unnecessary-pass": 2,
                     "wrong-import-order": 3,
                     "ungrouped-imports": 3,
                     "unused-import": 7
                 }
             },
             "mypy_score": {
-                "score": 0.9896526237989652,
+                "score": 0.9896678966789668,
                 "count_by_severity": {
                     "error": 14
                 },

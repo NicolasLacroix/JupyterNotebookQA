@@ -11,7 +11,7 @@
                 "score": 0,
                 "count_by_severity": {
                     "convention": 205,
-                    "error": 10,
+                    "error": 9,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 15,
@@ -25,7 +25,8 @@
                     "anomalous-backslash-in-string": 2,
                     "missing-module-docstring": 1,
                     "redefined-builtin": 3,
-                    "import-error": 6,
+                    "import-error": 4,
+                    "no-name-in-module": 1,
                     "missing-function-docstring": 50,
                     "invalid-name": 127,
                     "f-string-without-interpolation": 3,
@@ -54,12 +55,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9913644214162349,
+                "score": 0.9930915371329879,
                 "count_by_severity": {
-                    "error": 10
+                    "error": 8
                 },
                 "count_by_messages": {
-                    "import": 6,
+                    "import": 4,
                     "no-redef": 3,
                     "call-arg": 1
                 }

@@ -11,7 +11,7 @@
                 "score": 0,
                 "count_by_severity": {
                     "convention": 16,
-                    "error": 6,
+                    "error": 5,
                     "fatal": 0,
                     "info": 0,
                     "refactor": 1,
@@ -22,7 +22,7 @@
                     "bad-indentation": 50,
                     "trailing-whitespace": 1,
                     "missing-module-docstring": 1,
-                    "import-error": 3,
+                    "import-error": 2,
                     "missing-function-docstring": 6,
                     "invalid-name": 7,
                     "too-many-function-args": 2,
@@ -35,12 +35,12 @@
                 }
             },
             "mypy_score": {
-                "score": 0.9552238805970149,
+                "score": 0.9701492537313433,
                 "count_by_severity": {
-                    "error": 6
+                    "error": 4
                 },
                 "count_by_messages": {
-                    "import": 6
+                    "import": 4
                 }
             }
         }
