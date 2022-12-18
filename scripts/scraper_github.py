@@ -24,9 +24,14 @@ links = {
     "https://github.com/GokuMohandas/Made-With-ML",
     "https://github.com/google-research/google-research",
     "https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers",
-    "https://github.com/ageron/handson-ml",
     "https://github.com/ageron/handson-ml2",
-    "https://github.com/fastai/fastai"
+    "https://github.com/ageron/handson-ml3",
+    "https://github.com/fastai/fastai",
+    "https://github.com/trekhleb/homemade-machine-learning",
+    "https://github.com/MLEveryday/100-Days-Of-ML-Code",
+    "https://github.com/chenyuntc/pytorch-book",
+    "https://github.com/jupyter/notebook",
+    "https://github.com/Atcold/pytorch-Deep-Learning",
 }
 
 repositories = []
@@ -123,10 +128,10 @@ def extract_zip(repository: dict[str, str]) -> None:
 
     zip_file = zipfile.ZipFile(io.BytesIO(zip_response.content))
     for zi in zip_file.infolist():
-        zip_file.extract(zi, path=f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}")
+        zip_file.extract(zi, path=f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}")
         date_time = time.mktime(zi.date_time + (0, 0, -1))
         try:
-            os.utime(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
+            os.utime(f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
         except Exception as e:
             # Handle weird filename.
             print(e)
@@ -143,18 +148,19 @@ def get_repositories() -> None:
 
     for repository in repositories:
         directory = get_directory_str(repository)
+        print(directory)
 
-        if os.path.exists(f"../notebooks/github/{directory}"):
+        if os.path.exists(f"notebooks/github/{directory}"):
             print(f"{repository[OWNER]} already created, this GitHub repository is skipped.")
             continue
-        if os.path.exists(f"../notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}"):
+        if os.path.exists(f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}"):
             print(f"{directory}{TMP_DIRECTORY_SUFFIX} already created, skip the download "
                   f"part and retrieves the current notebooks.")
         else:
             extract_zip(repository)
 
-        clean_repository(f"../notebooks/github/{directory}")
-        create_toml(f"../notebooks/github/{directory}", repository)
+        clean_repository(f"notebooks/github/{directory}")
+        create_toml(f"notebooks/github/{directory}", repository)
 
 
 if __name__ == '__main__':

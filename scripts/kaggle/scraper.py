@@ -11,10 +11,13 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 def list_top_notebook(config_file: str = 'scripts/kaggle/notebooks.txt'):
     api = KaggleApi()
     api.authenticate()
-    notebooks = api.kernels_list(sort_by="voteCount", page_size=100)
     with open(config_file, 'w') as f:
-        for notebook in notebooks:
-            f.write(str(getattr(notebook, "ref")) + " " + str(getattr(notebook, "lastRunTime")) + "\n")
+        f.write('')
+    for page in range(1, 4):
+        notebooks = api.kernels_list(sort_by="voteCount", language='python', page_size=100, page=page)
+        with open(config_file, 'a') as f:
+            for notebook in notebooks:
+                f.write(str(getattr(notebook, "ref")) + " " + str(getattr(notebook, "lastRunTime")) + "\n")
 
 
 def scrap(config_file: str = 'scripts/kaggle/notebooks.txt'):
