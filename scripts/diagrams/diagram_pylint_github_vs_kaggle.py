@@ -45,4 +45,8 @@ if __name__ == '__main__':
 
     plt.xlim(0)
     plt.ylim(0)
+
+    plt.grid()
+    ax.set_axisbelow(True)
+
     plt.show()
