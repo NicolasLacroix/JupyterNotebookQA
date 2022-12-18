@@ -10,11 +10,12 @@ app = typer.Typer()
 
 
 @app.command()
-def analyze(directory: Optional[str] = typer.Argument('notebooks/')):
+def analyze(directory: Optional[str] = typer.Argument('notebooks/'),
+            output_dir: Optional[str] = typer.Argument('results/')):
     print(f"Running analysis in directory: {directory}")
     for n in Path(directory).glob('**/*.ipynb'):
         print(f"Running for {n}...", end="")
-        result = analysis.run_analysis(notebook_name=n.with_name(n.stem), verbose=False)
+        result = analysis.run_analysis(notebook_name=n.with_name(n.stem), output_dir=output_dir, verbose=False)
         print("done" if result else "error")
 
 

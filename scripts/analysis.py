@@ -52,7 +52,7 @@ def run_code_analysis(code_cells):
     total_nb_lines = 0
     for code_cell in code_cells:
         with open(tmp_filename, mode="a", encoding='utf-8') as f:
-            lines = [s for s in code_cell["source"] if not s.startswith('%')] + ['\n']
+            lines = [s if not s.strip().startswith('%') else s.replace('%', 'pass #') for s in code_cell["source"]] + ['\n']
             total_nb_lines += len(lines) - 1
             f.writelines(lines)
     with contextlib.redirect_stdout(io.StringIO()):
@@ -88,6 +88,7 @@ def compute_profile(data):
 
 def run_analysis(
         notebook_name: str = "notebooks/github/notebook",
+        output_dir: str = "results",
         verbose: bool = True,
         log_errors: bool = True
 ) -> bool:
@@ -157,7 +158,7 @@ def run_analysis(
     }
 
     with open(
-            f"results/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
+            f"{output_dir}/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
             mode="w",
             encoding="utf-8",
     ) as f:
@@ -170,4 +171,4 @@ def run_analysis(
 
 
 if __name__ == '__main__':
-    run_analysis()
+    run_analysis(notebook_name="notebooks/github/ageron-handson-ml/01_the_machine_learning_landscape", output_dir="results")
