@@ -30,15 +30,13 @@ if __name__ == '__main__':
     pylint_scores_github = get_pylint_score("github")
     pylint_scores_kaggle = get_pylint_score("kaggle")
 
-    occurrences_github = [(lambda element: pylint_scores_github.count(element))(element) for element in
-                          pylint_scores_github]
-    occurrences_kaggle = [(lambda element: pylint_scores_kaggle.count(element))(element) for element in
-                          pylint_scores_kaggle]
+    occurrences_github = dict(sorted({element: pylint_scores_github.count(element) for element in pylint_scores_github}.items()))
+    occurrences_kaggle = dict(sorted({element: pylint_scores_kaggle.count(element) for element in pylint_scores_github}.items()))
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    github_scatter = ax.scatter(pylint_scores_github, occurrences_github, color='r')
-    kaggle_scatter = ax.scatter(pylint_scores_kaggle, occurrences_kaggle, color='b')
-    ax.legend((github_scatter, kaggle_scatter), ("GitHub", "Kaggle"))
+    github_plot = ax.plot(occurrences_github.keys(), occurrences_github.values(), color='r')
+    kaggle_plot = ax.plot(occurrences_kaggle.keys(), occurrences_kaggle.values(), color='b')
+    ax.legend((github_plot, kaggle_plot), ("GitHub", "Kaggle"))
     ax.set_xlabel('Pylint score')
     ax.set_ylabel('Number of notebooks')
     ax.set_title('Score of notebooks')

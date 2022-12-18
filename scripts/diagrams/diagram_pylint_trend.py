@@ -27,11 +27,11 @@ def get_pylint_score():
 if __name__ == '__main__':
     pylint_scores = get_pylint_score()
 
-    occurrences = [(lambda element: pylint_scores.count(element))(element) for element in
-                   pylint_scores]
+    occurrences = dict(sorted({element: pylint_scores.count(element) for element in pylint_scores}.items()))
+
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.scatter(pylint_scores, occurrences, color='r')
+    ax.plot(occurrences.keys(), occurrences.values(), color='r')
     ax.set_xlabel('Pylint score')
     ax.set_ylabel('Number of notebooks')
     ax.set_title('Score of notebooks')
