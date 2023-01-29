@@ -1,8 +1,10 @@
-from extractor import read_files
+import json
+
+from scripts.diagrams.extractor import read_files
 
 
-def get_error_stats():
-    jsons = read_files("../../results/")
+def get_error_stats(directory: str):
+    jsons = read_files(directory)
     error_stats = {}
     for element in jsons:
         try:
@@ -20,9 +22,11 @@ def get_error_stats():
         except (TypeError, KeyError):
             pass
 
-    return dict(sorted(error_stats.items(), key=lambda item: item[1], reverse=True))
+    result = dict(sorted(error_stats.items(), key=lambda item: item[1], reverse=True))
+    with open(f"commons_errors_{directory.replace('./', '').replace('/', '_')}.json", 'w') as f:
+        json.dump(result, f)
+    return result
 
 
 if __name__ == '__main__':
-    stats = get_error_stats()
-    print(stats)
+    print(get_error_stats("../../results/"))

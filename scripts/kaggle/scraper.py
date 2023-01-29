@@ -1,7 +1,7 @@
 import os
 import time
 
-os.environ['KAGGLE_CONFIG_DIR'] = f"{os.getcwd()}/scripts/kaggle"
+os.environ['KAGGLE_CONFIG_DIR'] = f"scripts/kaggle"
 
 import tomli_w
 from kaggle.api.kaggle_api_extended import KaggleApi

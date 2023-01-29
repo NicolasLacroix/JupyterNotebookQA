@@ -6,27 +6,27 @@ import sys
 import tomli
 from collections import Counter
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, Tuple
 from uuid import uuid1
 
 import flake8
 from mypy import api
-from pylint.lint import Run
+from pylint.lint import Run, pylinter
 
 
-def filter_cells_by(data: dict[str, Any], filter_key: str, filter_value: str) -> tuple[dict[str, Any]]:
+def filter_cells_by(data: Dict[str, Any], filter_key: str, filter_value: str) -> Tuple[Dict[str, Any]]:
     return tuple(n for n in data["cells"] if n[filter_key] == filter_value)
 
 
-def get_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
+def get_cells(data: Dict[str, Any]) -> Tuple[Dict[str, Any]]:
     return tuple(n for n in data["cells"])
 
 
-def get_code_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
+def get_code_cells(data: Dict[str, Any]) -> Tuple[Dict[str, Any]]:
     return filter_cells_by(data, "cell_type", "code")
 
 
-def get_markdown_cells(data: dict[str, Any]) -> tuple[dict[str, Any]]:
+def get_markdown_cells(data: Dict[str, Any]) -> Tuple[Dict[str, Any]]:
     return filter_cells_by(data, "cell_type", "markdown")
 
 
@@ -52,9 +52,19 @@ def run_code_analysis(code_cells):
     total_nb_lines = 0
     for code_cell in code_cells:
         with open(tmp_filename, mode="a", encoding='utf-8') as f:
-            lines = [s if not s.strip().startswith('%') else s.replace('%', 'pass #') for s in code_cell["source"]] + ['\n']
+            source = code_cell["source"] if isinstance(code_cell["source"], str) else '\n'.join(code_cell["source"])
+            lines = []
+            for s in source.split('\n'):
+                if s.strip().startswith('%'):
+                    s = s.replace('%', 'pass # %')
+                if s.strip().startswith('!'):
+                    s = s.replace('!', '# !')
+                if s.strip().startswith('pip install '):
+                    s = s.replace('pip install ', '# pip install ')
+                lines.append(s)
+            lines.append('\n')
             total_nb_lines += len(lines) - 1
-            f.writelines(lines)
+            f.write('\n'.join(lines))
     with contextlib.redirect_stdout(io.StringIO()):
         pylint_run = Run([tmp_filename], exit=False)
         pylint_result = {
@@ -62,13 +72,15 @@ def run_code_analysis(code_cells):
             'count_by_severity': list(pylint_run.linter.stats.by_module.values())[0],
             'count_by_messages': pylint_run.linter.stats.by_msg
         }
-        mypy_run = api.run([tmp_filename])
-    mypy_output_lines = [line for line in mypy_run[0].strip().split('\n') if ': note: ' not in line and 'module is installed, but missing library stubs or py.typed marker' not in line][:-1]
-    mypy_nb_errors = len(tuple(line for line in mypy_output_lines if ': error: ' in line))
+        pylinter.MANAGER.clear_cache()
+        pylint_run.linter.close()
+        # mypy_run = api.run([tmp_filename])
+    # mypy_output_lines = [line for line in mypy_run[0].strip().split('\n') if ': note: ' not in line and 'module is installed, but missing library stubs or py.typed marker' not in line][:-1]
+    # mypy_nb_errors = len(tuple(line for line in mypy_output_lines if ': error: ' in line))
     mypy_result = {
-        'score': 1 - int(mypy_nb_errors) / total_nb_lines if mypy_nb_errors > 0 else 100,
-        'count_by_severity': dict(Counter(e.split(': ')[1] for e in mypy_output_lines)),
-        'count_by_messages': dict(Counter(e.split('  [')[1][:-1] for e in mypy_output_lines)),
+        'score': -1, # 1 - int(mypy_nb_errors) / total_nb_lines if mypy_nb_errors > 0 else 100,
+        'count_by_severity': {}, # dict(Counter(e.split(': ')[1] for e in mypy_output_lines)),
+        'count_by_messages': {}, # dict(Counter(e.split('  [')[1][:-1] for e in mypy_output_lines)),
     }
     tmp_path.unlink()
 
@@ -156,7 +168,7 @@ def run_analysis(
         },
         "profile": profile,
     }
-
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
     with open(
             f"{output_dir}/{notebook_metadata['metadata']['author']}_{notebook_metadata['title']}.json",
             mode="w",

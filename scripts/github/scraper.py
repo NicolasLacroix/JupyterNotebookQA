@@ -5,6 +5,7 @@ import shutil
 import time
 import zipfile
 from datetime import datetime
+from typing import Dict
 
 import requests
 import tomli_w
@@ -16,28 +17,11 @@ OWNER = "owner"
 NAME = "name"
 
 # https://github.com/search?l=&o=desc&q=stars%3A%22%3E+1000%22+language%3A%22Jupyter+Notebook%22&s=stars&type=Repositories
-links = {
-    "https://github.com/microsoft/ML-For-Beginners",
-    "https://github.com/aymericdamien/TensorFlow-Examples",
-    "https://github.com/jakevdp/PythonDataScienceHandbook",
-    "https://github.com/CompVis/stable-diffusion",
-    "https://github.com/GokuMohandas/Made-With-ML",
-    "https://github.com/google-research/google-research",
-    "https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers",
-    "https://github.com/ageron/handson-ml2",
-    "https://github.com/ageron/handson-ml3",
-    "https://github.com/fastai/fastai",
-    "https://github.com/trekhleb/homemade-machine-learning",
-    "https://github.com/MLEveryday/100-Days-Of-ML-Code",
-    "https://github.com/chenyuntc/pytorch-book",
-    "https://github.com/jupyter/notebook",
-    "https://github.com/Atcold/pytorch-Deep-Learning",
-}
 
 repositories = []
 
 
-def create_toml(directory: str, repository: dict[str, str]) -> None:
+def create_toml(directory: str, repository: Dict[str, str]) -> None:
     for root, dirs, files in os.walk(directory):
         for current_file in files:
             if current_file.lower().endswith('.ipynb') and not os.path.isfile(f"{directory}/{current_file}.toml"):
@@ -91,7 +75,7 @@ def clean_repository(directory: str) -> None:
     delete_directory(directory + TMP_DIRECTORY_SUFFIX)
 
 
-def download_zip(repository: dict[str, str]) -> Response:
+def download_zip(repository: Dict[str, str]) -> Response:
     headers = {"Accept": "application/vnd.github+json"}
     if os.environ.get('GITHUB_TOKEN') is not None:
         headers['Authorization'] = f"Bearer {os.environ.get('GITHUB_TOKEN')}"
@@ -107,31 +91,32 @@ def download_zip(repository: dict[str, str]) -> Response:
     return requests.get(download_url)
 
 
-def parse_links() -> None:
-    for link in links:
-        link = link.split('/')
-        owner = link[3]
-        name = ''.join(link[4:])
-        repositories.append({OWNER: owner, NAME: name})
+def parse_links(config_file) -> None:
+    with open(config_file) as f:
+        for link in f.readlines():
+            link = link.strip().split('/')
+            owner = link[3]
+            name = ''.join(link[4:])
+            repositories.append({OWNER: owner, NAME: name})
 
 
-def get_directory_str(repository: dict[str, str]) -> str:
+def get_directory_str(repository: Dict[str, str]) -> str:
     if len(repository) == 2:
         return f"{repository[OWNER]}-{repository[NAME]}"
     return "unknown-repository"
 
 
-def extract_zip(repository: dict[str, str]) -> None:
+def extract_zip(repository: Dict[str, str], output_dir: str) -> None:
     directory = get_directory_str(repository)
     zip_response = download_zip(repository)
     print("Extracting archive...")
 
     zip_file = zipfile.ZipFile(io.BytesIO(zip_response.content))
     for zi in zip_file.infolist():
-        zip_file.extract(zi, path=f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}")
+        zip_file.extract(zi, path=f"{output_dir}/{directory}{TMP_DIRECTORY_SUFFIX}")
         date_time = time.mktime(zi.date_time + (0, 0, -1))
         try:
-            os.utime(f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
+            os.utime(f"{output_dir}/{directory}{TMP_DIRECTORY_SUFFIX}/{zi.filename}", (date_time, date_time))
         except Exception as e:
             # Handle weird filename.
             print(e)
@@ -140,28 +125,28 @@ def extract_zip(repository: dict[str, str]) -> None:
     print(f"{directory} directory extracted.")
 
 
-def get_repositories() -> None:
+def get_repositories(config_file: str, output_dir: str = "notebooks/github") -> None:
     """
     Retrieve the notebooks of the top 10 most stars repositories on GitHub.
     """
-    parse_links()
+    parse_links(config_file)
 
     for repository in repositories:
         directory = get_directory_str(repository)
         print(directory)
 
-        if os.path.exists(f"notebooks/github/{directory}"):
+        if os.path.exists(f"{output_dir}/{directory}"):
             print(f"{repository[OWNER]} already created, this GitHub repository is skipped.")
             continue
-        if os.path.exists(f"notebooks/github/{directory}{TMP_DIRECTORY_SUFFIX}"):
+        if os.path.exists(f"{output_dir}/{directory}{TMP_DIRECTORY_SUFFIX}"):
             print(f"{directory}{TMP_DIRECTORY_SUFFIX} already created, skip the download "
                   f"part and retrieves the current notebooks.")
         else:
-            extract_zip(repository)
+            extract_zip(repository, output_dir)
 
-        clean_repository(f"notebooks/github/{directory}")
-        create_toml(f"notebooks/github/{directory}", repository)
+        clean_repository(f"{output_dir}/{directory}")
+        create_toml(f"{output_dir}/{directory}", repository)
 
 
 if __name__ == '__main__':
-    get_repositories()
+    get_repositories('scripts/github/notebooks_top.txt')

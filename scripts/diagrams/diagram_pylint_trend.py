@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from extractor import read_files
+from scripts.diagrams.extractor import read_files
 
 
 def round_off_rating(number):
@@ -10,8 +10,8 @@ def round_off_rating(number):
     return round(number * 2) / 2
 
 
-def get_pylint_score():
-    jsons = read_files("../../results/")
+def get_pylint_score(directory: str):
+    jsons = read_files(directory)
     scores = []
     for element in jsons:
         try:
@@ -24,8 +24,8 @@ def get_pylint_score():
     return scores
 
 
-if __name__ == '__main__':
-    pylint_scores = get_pylint_score()
+def plot_diagram(directory: str, title: str):
+    pylint_scores = get_pylint_score(directory)
 
     occurrences = dict(sorted({element: pylint_scores.count(element) for element in pylint_scores}.items()))
 
@@ -34,12 +34,17 @@ if __name__ == '__main__':
     ax.plot(occurrences.keys(), occurrences.values(), '.-', color='r')
     ax.set_xlabel('Pylint score')
     ax.set_ylabel('Number of notebooks')
-    ax.set_title('Score of notebooks')
+    ax.set_title(title)
 
     plt.xlim(0)
     plt.ylim(0)
 
     plt.grid()
     ax.set_axisbelow(True)
+    plt.savefig(f'diagram_pylint_trend_{title}.png')
 
     plt.show()
+
+
+if __name__ == '__main__':
+    plot_diagram("../../results/", 'Score of notebooks')

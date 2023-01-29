@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
-from extractor import read_files
+from scripts.diagrams.extractor import read_files
 
 
-def get_cells_stats(source: str):
-    jsons = read_files("../../results/")
+def get_cells_stats(directory: str, source: str):
+    jsons = read_files(directory)
     cells_stats = []
     for element in jsons:
         try:
@@ -21,9 +22,9 @@ def get_cells_stats(source: str):
     return cells_stats
 
 
-if __name__ == '__main__':
-    cells_stats_github = get_cells_stats("github")
-    cells_stats_kaggle = get_cells_stats("kaggle")
+def plot_diagram(directory: str, title: str):
+    cells_stats_github = get_cells_stats(directory, "github")
+    cells_stats_kaggle = get_cells_stats(directory, "kaggle")
 
     code_github = [element['code'] for element in cells_stats_github]
     code_kaggle = [element['code'] for element in cells_stats_kaggle]
@@ -33,18 +34,31 @@ if __name__ == '__main__':
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    github_scatter = ax.scatter(code_github, markdown_github, color='r')
-    kaggle_scatter = ax.scatter(code_kaggle, markdown_kaggle, color='b')
-    ax.legend(("GitHub", "Kaggle"))
+    ax.scatter(code_github, markdown_github, color='r')
+    if code_kaggle:
+        ax.scatter(code_kaggle, markdown_kaggle, color='b')
+
+    #calculate equation for trendline
+    z = np.polyfit(code_github + code_kaggle, markdown_github + markdown_kaggle, 1)
+    p = np.poly1d(z)
+
+    #add trendline to plot
+    plt.plot(code_github + code_kaggle, p(code_github + code_kaggle))
+
+    ax.legend(("GitHub", "Kaggle") if code_kaggle else ("Github", ), fontsize="large")
     ax.set_xlabel('Cells of code')
     ax.set_ylabel('Cells of markdown')
-    ax.set_title('Cells of code and markdown')
+    ax.set_title(title)
 
-    plt.xticks(range(0, 250, 25))
-    plt.yticks(range(0, 250, 25))
     plt.grid()
     ax.set_axisbelow(True)
 
     plt.xlim(0)
     plt.ylim(0)
+    plt.savefig(f"diagram_cells_{'github_vs_kaggle' if code_kaggle else 'github'}_{title}.png")
+    
     plt.show()
+
+
+if __name__ == '__main__':
+    plot_diagram("../../results/", 'Number of markdown per code cells')
