@@ -39,11 +39,16 @@ def plot_diagram(directory: str, title: str):
         ax.scatter(code_kaggle, markdown_kaggle, color='b')
 
     #calculate equation for trendline
-    z = np.polyfit(code_github + code_kaggle, markdown_github + markdown_kaggle, 1)
-    p = np.poly1d(z)
+    z_github = np.polyfit(code_github, markdown_github, 1)
+    p_github = np.poly1d(z_github)
+    if code_kaggle:
+        z_kaggle = np.polyfit(code_kaggle, markdown_kaggle, 1)
+        p_kaggle = np.poly1d(z_kaggle)
 
     #add trendline to plot
-    plt.plot(code_github + code_kaggle, p(code_github + code_kaggle))
+    plt.plot(code_github, p_github(code_github), color='r')
+    if code_kaggle:
+        plt.plot(code_kaggle, p_kaggle(code_kaggle), color='b')
 
     ax.legend(("GitHub", "Kaggle") if code_kaggle else ("Github", ), fontsize="large")
     ax.set_xlabel('Cells of code')

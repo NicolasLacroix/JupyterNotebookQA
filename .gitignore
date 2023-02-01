@@ -136,8 +136,4 @@ tmp/
 .idea/
 
 # Notebooks repositories
-notebooks/github/**/*.ipynb
-
-
-# Results of analysis
-results/
+notebooks/**/*.ipynb
